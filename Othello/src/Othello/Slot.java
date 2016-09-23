@@ -31,7 +31,7 @@ public class Slot {
 		else if (this.state == "Black")
 			this.state = "White";
 		else
-			System.out.println("Error in slot flip function. Row " + this.row + "Col " + this.col + "State "+this.state);
+			System.out.println("Error in slot flip function. Row " + this.row + "  Col " + this.col + "  State "+this.state);
 		;
 	};
 	
