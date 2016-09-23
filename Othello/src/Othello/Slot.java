@@ -26,9 +26,9 @@ public class Slot {
 	}
 
 	public void flip() {
-		if (this.state == "white")
-			this.state = "black";
-		else if (this.state == "black")
+		if (this.state == "White")
+			this.state = "Black";
+		else if (this.state == "Black")
 			this.state = "white";
 		else
 			System.out.println("Error in slot flip function.");
