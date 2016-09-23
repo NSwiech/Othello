@@ -29,7 +29,7 @@ public class Slot {
 		if (this.state == "White")
 			this.state = "Black";
 		else if (this.state == "Black")
-			this.state = "white";
+			this.state = "White";
 		else
 			System.out.println("Error in slot flip function.");
 		;
