@@ -326,7 +326,7 @@ public class Game {
 			for (int col = 0; col < 4; col++) {
 				if (grid[row][col].state == "available") {
 					rowString = rowString + " |";
-				} else if (grid[row][col].state == "white") {
+				} else if (grid[row][col].state.equals(White)) {
 					rowString = rowString + "W|";
 				} else {
 					rowString = rowString + "B|";
@@ -334,6 +334,7 @@ public class Game {
 			}
 			System.out.println(rowString);
 		}
+		System.out.println("Current ccore is: White:" + utility()[0] + " Black:" + utility()[1]);
 	}
 
 	// Calculate both players current score
@@ -342,11 +343,11 @@ public class Game {
 		int noOfWhite = 0;
 		int[] score = new int[2]; // Score keeper White,Black
 
-		for (int row = 0; row < 4; row++) {
-			for (int col = 0; col < 4; col++) {
-				if (grid[row][col].state == "black") {
+		for (int row = 0; row < 3; row++) {
+			for (int col = 0; col < 3; col++) {
+				if (grid[row][col].state.equals(Black)) {
 					noOfBlack++;
-				} else if (grid[row][col].state == "black") {
+				} else if (grid[row][col].state.equals(White)) {
 					noOfWhite++;
 				}
 			}
@@ -357,8 +358,8 @@ public class Game {
 	}
 
 	public static void initializeGrid() {
-		for (int row = 0; row < 4; row++) {
-			for (int col = 0; col < 4; col++) {
+		for (int row = 0; row < 3; row++) {
+			for (int col = 0; col < 3; col++) {
 				grid[row][col] = new Slot(row, col, "available");
 			}
 		}
