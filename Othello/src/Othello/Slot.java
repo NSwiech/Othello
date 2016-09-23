@@ -8,6 +8,8 @@ public class Slot {
 	// boolean available; // clarify and agree on meaning of this
 	// if(this.white || this.black){
 	// this available=false;
+	
+	
 	// }
 	
 
