@@ -17,6 +17,7 @@ public class Human implements Controllable {
 	public void play() {
 		boolean played = false;
 		while (!played) {
+			// Human enters 1-4 computer subtracts 1 to apply to arrays
 			System.out.println("Choose a row between 1 and 4");
 			 row = this.rowChoice.nextInt() - 1;
 			System.out.println("Choose a column between 1 and 4");
@@ -24,7 +25,7 @@ public class Human implements Controllable {
 
 			if (Game.grid[row][col].state == "available") {
 				System.out.println("Legal move. You played.");
-				Game.grid[row][col].state = "white";
+				Game.grid[row][col].state = "White";
 				played = true;
 			} else {
 				System.out.println("Not legal move.");
