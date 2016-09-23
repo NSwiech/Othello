@@ -23,7 +23,7 @@ public class Game {
 		// main game loop
 		initializeGrid();// set each Slot of the grid to "available"
 		startGame();
-		System.out.println("We are off to a great start, Vive la France");
+		
 		// for (int n = 0; n < 16; n++) {
 		// play();
 		// updateGrid();
@@ -33,6 +33,7 @@ public class Game {
 	public static void startGame() {
 		int currentPlayer = 0;
 		boolean victory = false;
+		System.out.println("We are off to a great start, Vive la France");
 		while (!victory) {
 			if (currentPlayer % 2 == 0) {
 				Player1.play();
@@ -46,7 +47,7 @@ public class Game {
 	}
 
 	// }
-
+	// 
 	public static void updateGrid(int currentPlayer) {
 		int row, col;
 		if (currentPlayer % 2 == 0) {
@@ -54,7 +55,7 @@ public class Game {
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
 			System.out.println("bla");
-			// check N
+			// check N (North)
 			do {
 				row--;
 			} while ((grid[row][col].state == Player2.getColor() && (row > 0)));
@@ -69,7 +70,7 @@ public class Game {
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
 
-			// check NE
+			// check NE (North East)
 			do {
 				col++;
 				row--;
@@ -135,7 +136,7 @@ public class Game {
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
 
-			// check SO
+			// check SW
 
 			do {
 				col--;
@@ -154,7 +155,7 @@ public class Game {
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
 			
-			// check O
+			// check W
 			do {
 				col--;
 			} while ((grid[row][col].state == Player2.getColor()) && (col > 0));
@@ -167,7 +168,7 @@ public class Game {
 			}
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
-			// check NO
+			// check NW
 			do {
 				col--;
 				row--;
@@ -267,7 +268,7 @@ public class Game {
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
 
-			// check SO
+			// check SW
 
 			do {
 				col--;
@@ -286,7 +287,7 @@ public class Game {
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
 			
-			// check O
+			// check W
 			do {
 				col--;
 			} while ((grid[row][col].state == Player1.getColor()) && (col > 0));
@@ -301,7 +302,7 @@ public class Game {
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
 			
-			// check NO
+			// check NW
 			do {
 				col--;
 				row--;
