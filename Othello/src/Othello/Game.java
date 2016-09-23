@@ -58,11 +58,14 @@ public class Game {
 			// check N (North)
 			do {
 				row--;
+				row = Math.max(0,row);
 			} while ((grid[row][col].state == Player2.getColor() && (row > 0)));
 
 			if (grid[row][col].state == Player1.getColor()) {
 				do {
 					row++;
+					row = Math.min(3,row);
+					System.out.println("@");
 					grid[row][col].flip();
 				} while (row != Player1.getLastRowPlayed());
 			}
@@ -73,13 +76,17 @@ public class Game {
 			// check NE (North East)
 			do {
 				col++;
+				col = Math.min(3,col);
 				row--;
+				row = Math.max(0,row);
 			} while ((grid[row][col].state == Player2.getColor()) && (row > 0) && (col < 3));
 
 			if (grid[row][col].state == Player1.getColor()) {
 				do {
 					col--;
+					col = Math.max(0,col);
 					row++;
+					row = Math.min(3,row);
 					grid[row][col].flip();
 				} while ((row != Player1.getLastRowPlayed())
 						&& col != Player1.getLastColPlayed());
@@ -91,11 +98,13 @@ public class Game {
 			// check E
 			do {
 				col++;
+				col = Math.min(3,col);
 			} while ((grid[row][col].state == Player2.getColor()) && (col < 3));
 
 			if (grid[row][col].state == Player1.getColor()) {
 				do {
 					col--;
+					col = Math.max(0,col);
 					grid[row][col].flip();
 				} while (col != Player1.getLastColPlayed());
 			}
@@ -106,13 +115,17 @@ public class Game {
 			// check SE
 			do {
 				col++;
+				col = Math.min(3,col);
 				row++;
+				row = Math.min(3,row);
 			} while ((grid[row][col].state == Player2.getColor()) && (row < 3) && (col < 3));
 
 			if (grid[row][col].state == Player1.getColor()) {
 				do {
 					col--;
+					col = Math.max(0,col);
 					row--;
+					row = Math.max(0,row);
 					grid[row][col].flip();
 				} while ((row != Player1.getLastRowPlayed())
 						&& col != Player1.getLastColPlayed());
@@ -124,11 +137,13 @@ public class Game {
 			// check S
 			do {
 				row++;
+				row = Math.min(3,row);
 			} while ((grid[row][col].state == Player2.getColor()) && (row < 3));
 
 			if (grid[row][col].state == Player1.getColor()) {
 				do {
 					row--;
+					row = Math.max(0,row);
 					grid[row][col].flip();
 				} while (row != Player1.getLastRowPlayed());
 			}
@@ -140,13 +155,17 @@ public class Game {
 
 			do {
 				col--;
+				col = Math.max(0,col);
 				row++;
+				row = Math.min(3,row);
 			} while ((grid[row][col].state == Player2.getColor()) && (row < 3) && (col > 0));
 
 			if (grid[row][col].state == Player1.getColor()) {
 				do {
 					col++;
+					col = Math.min(3,col);
 					row--;
+					row = Math.max(0,row);
 					grid[row][col].flip();
 				} while ((row != Player1.getLastRowPlayed())
 						&& col != Player1.getLastColPlayed());
@@ -158,11 +177,13 @@ public class Game {
 			// check W
 			do {
 				col--;
+				col = Math.max(0,row);
 			} while ((grid[row][col].state == Player2.getColor()) && (col > 0));
 
 			if (grid[row][col].state == Player1.getColor()) {
 				do {
 					col++;
+					col = Math.min(3,col);
 					grid[row][col].flip();
 				} while (col != Player1.getLastColPlayed());
 			}
@@ -171,13 +192,17 @@ public class Game {
 			// check NW
 			do {
 				col--;
+				col = Math.max(0,col);
 				row--;
+				row = Math.max(0,row);
 			} while ((grid[row][col].state == Player2.getColor()) && (row > 0) && (col > 0));
 
 			if (grid[row][col].state == Player1.getColor()) {
 				do {
 					col++;
+					col = Math.min(3,col);
 					row++;
+					row = Math.min(3,row);
 					grid[row][col].flip();
 				} while ((row != Player1.getLastRowPlayed())
 						&& col != Player1.getLastColPlayed());
@@ -190,11 +215,13 @@ public class Game {
 			// check N
 			do {
 				row--;
+				row = Math.max(0,row);
 			} while ((grid[row][col].state == Player1.getColor() && (row > 0)));
 
 			if (grid[row][col].state == Player2.getColor()) {
 				do {
 					row++;
+					row = Math.min(3,row);
 					grid[row][col].flip();
 				} while (row != Player2.getLastRowPlayed());
 			}
@@ -205,13 +232,17 @@ public class Game {
 			// check NE
 			do {
 				col++;
+				col = Math.min(3,col);
 				row--;
+				row = Math.max(0,row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row > 0) && (col < 3));
 
 			if (grid[row][col].state == Player2.getColor()) {
 				do {
 					col--;
+					col = Math.max(0,col);
 					row++;
+					row = Math.min(3,row);
 					grid[row][col].flip();
 				} while ((row != Player2.getLastRowPlayed())
 						&& col != Player2.getLastColPlayed());
@@ -223,11 +254,13 @@ public class Game {
 			// check E
 			do {
 				col++;
+				col = Math.min(3,col);
 			} while ((grid[row][col].state == Player1.getColor()) && (col < 3));
 
 			if (grid[row][col].state == Player2.getColor()) {
 				do {
 					col--;
+					col = Math.max(0,col);
 					grid[row][col].flip();
 				} while ((col+1) != Player2.getLastColPlayed());
 			}
@@ -238,13 +271,17 @@ public class Game {
 			// check SE
 			do {
 				col++;
+				col = Math.min(3,col);
 				row++;
+				row = Math.min(3,row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row < 3) && (col < 3));
 
 			if (grid[row][col].state == Player2.getColor()) {
 				do {
 					col--;
+					col = Math.max(0,col);
 					row--;
+					row = Math.max(0,row);
 					grid[row][col].flip();
 				} while ((row != Player2.getLastRowPlayed())
 						&& col > Player2.getLastColPlayed());
@@ -256,11 +293,13 @@ public class Game {
 			// check S
 			do {
 				row++;
+				row = Math.min(3,row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row < 3));
 
 			if (grid[row][col].state == Player2.getColor()) {
 				do {
 					row--;
+					row = Math.max(0,row);
 					grid[row][col].flip();
 				} while (row != Player2.getLastRowPlayed());
 			}
@@ -272,13 +311,17 @@ public class Game {
 
 			do {
 				col--;
+				col = Math.max(0,col);
 				row++;
+				row = Math.min(3,row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row < 3) && (col > 0));
 
 			if (grid[row][col].state == Player2.getColor()) {
 				do {
 					col++;
+					col = Math.min(3,col);
 					row--;
+					row = Math.max(0,row);
 					grid[row][col].flip();
 				} while ((row != Player2.getLastRowPlayed())
 						&& col != Player2.getLastColPlayed());
@@ -290,11 +333,13 @@ public class Game {
 			// check W
 			do {
 				col--;
+				col = Math.max(0,col);
 			} while ((grid[row][col].state == Player1.getColor()) && (col > 0));
 
 			if (grid[row][col].state == Player2.getColor()) {
 				do {
 					col++;
+					col = Math.min(3,col);
 					grid[row][col].flip();
 				} while (col != Player2.getLastColPlayed());
 			}
@@ -305,13 +350,17 @@ public class Game {
 			// check NW
 			do {
 				col--;
+				col = Math.max(0,col);
 				row--;
+				row = Math.max(0,row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row > 0) && (col > 0));
 
 			if (grid[row][col].state == Player2.getColor()) {
 				do {
 					col++;
+					col = Math.min(3,col);
 					row++;
+					row = Math.min(3,row);
 					grid[row][col].flip();
 				} while ((row != Player2.getLastRowPlayed())
 						&& col != Player2.getLastColPlayed());
@@ -321,9 +370,9 @@ public class Game {
 	}
 
 	public static void displayGrid() {
-		for (int row = 0; row < 4; row++) {
+		for (int row = 0; row <3 ; row++) {
 			String rowString = "|";
-			for (int col = 0; col < 4; col++) {
+			for (int col = 0; col < 3; col++) {
 				if (grid[row][col].state == "available") {
 					rowString = rowString + " |";
 				} else if (grid[row][col].state.equals(White)) {
@@ -358,15 +407,11 @@ public class Game {
 	}
 
 	public static void initializeGrid() {
-		for (int row = 0; row < 3; row++) {
-			for (int col = 0; col < 3; col++) {
+		for (int row = 0; row < 4; row++) {
+			for (int col = 0; col < 4; col++) {
 				grid[row][col] = new Slot(row, col, "available");
 			}
 		}
 	}
 
-	public static void updateGrid() {
-		// getLastPlayed()
-
-	}
 }
