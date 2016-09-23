@@ -23,6 +23,7 @@ public class Game {
 		// main game loop
 		initializeGrid();// set each Slot of the grid to "available"
 		startGame();
+		System.out.println("We are off to a great start, Vive la France");
 		// for (int n = 0; n < 16; n++) {
 		// play();
 		// updateGrid();
