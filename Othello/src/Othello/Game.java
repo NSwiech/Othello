@@ -3,6 +3,7 @@ package Othello;
 import java.util.ArrayList;
 
 //TODO while instead of do/while
+//TODO 0<row<4  and  0<col<4
 
 
 public class Game {
