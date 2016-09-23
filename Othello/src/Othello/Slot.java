@@ -9,7 +9,7 @@ public class Slot {
 	// if(this.white || this.black){
 	// this available=false;
 	
-	
+	// displayData branch
 	// }
 	
 
