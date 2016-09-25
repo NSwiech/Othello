@@ -48,7 +48,8 @@ public class Game {
 	}
 
 	// }
-	//
+	//{{-1,0}{-1,1}{0,1}{1,1}{1,0}{1,-1}{0,-1}{-1,-1}}
+	//   N,     NE,   E,  SE,   S,   SW,    W,     NW
 	public static void updateGrid(int currentPlayer) {
 		int row, col;
 		if (currentPlayer % 2 == 0) {
