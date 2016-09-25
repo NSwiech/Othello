@@ -382,7 +382,7 @@ public class Game {
 			} while ((grid[row][col].state == Player1.getColor()) && (col > 0));
 
 			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastColPlayed() != 0)) {
-				while (col > Player2.getLastColPlayed() + 1) {
+				while (col < Player2.getLastColPlayed() - 1) {
 					col++;
 					col = Math.min(3, col);
 					System.out.println("@@7");
