@@ -3,6 +3,8 @@ package Othello;
 import java.util.ArrayList;
 
 //TODO while instead of do/while
+//TODO not flipping yourself!
+//TODO working on line 189
 
 public class Game {
 
@@ -50,11 +52,8 @@ public class Game {
 	public static void updateGrid(int currentPlayer) {
 		int row, col;
 		if (currentPlayer % 2 == 0) {
-			System.out.println("bla");
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
-			System.out.println("bla");
-			displayGrid();
 			// check N (North)
 			do {
 				row--;
@@ -65,7 +64,7 @@ public class Game {
 				do {
 					row++;
 					row = Math.min(3, row);
-					System.out.println("@");
+					System.out.println("@1");
 					grid[row][col].flip();
 				} while (row != Player1.getLastRowPlayed());
 			}
@@ -182,16 +181,28 @@ public class Game {
 			// check W
 			do {
 				col--;
-				col = Math.max(0, row);
+				col = Math.max(0, col);
 			} while ((grid[row][col].state == Player2.getColor()) && (col > 0));
 
 			if ((grid[row][col].state == Player1.getColor()) && (Player1.getLastColPlayed() != 0)) {
-				do {
+				
+				while (col != Player1.getLastColPlayed()) {
+					System.out.println(row + "" + col + "" +grid[row][col].state);
+					grid[row][col].flip();
 					col++;
 					col = Math.min(3, col);
 					System.out.println("@7");
+					System.out.println(row + "" + col + "" +grid[row][col].state);
+				};
+				
+				/*do {
+					col++;
+					col = Math.min(3, col);
+					System.out.println("@7");
+					System.out.println(row + "" + col + "" +grid[row][col].state);
 					grid[row][col].flip();
-				} while (col != Player1.getLastColPlayed());
+					System.out.println(row + "" + col + "" +grid[row][col].state);
+				} while (col != Player1.getLastColPlayed());*/
 			}
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
@@ -216,7 +227,7 @@ public class Game {
 				} while ((row != Player1.getLastRowPlayed()) && col != Player1.getLastColPlayed());
 			}
 		}
-
+		
 		else {
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
@@ -226,7 +237,7 @@ public class Game {
 				row = Math.max(0, row);
 			} while ((grid[row][col].state == Player1.getColor() && (row > 0)));
 
-			if (grid[row][col].state == Player2.getColor()) {
+			if ((grid[row][col].state == Player2.getColor()) && ((Player2.getLastRowPlayed() != 0))) {
 				do {
 					row++;
 					row = Math.min(3, row);
@@ -245,7 +256,8 @@ public class Game {
 				row = Math.max(0, row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row > 0) && (col < 3));
 
-			if (grid[row][col].state == Player2.getColor()) {
+			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastRowPlayed() != 0)
+					&& (Player2.getLastColPlayed() != 3)) {
 				do {
 					col--;
 					col = Math.max(0, col);
@@ -264,7 +276,7 @@ public class Game {
 				col = Math.min(3, col);
 			} while ((grid[row][col].state == Player1.getColor()) && (col < 3));
 
-			if (grid[row][col].state == Player2.getColor()) {
+			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastColPlayed() != 3)) {
 				do {
 					col--;
 					col = Math.max(0, col);
@@ -283,7 +295,8 @@ public class Game {
 				row = Math.min(3, row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row < 3) && (col < 3));
 
-			if (grid[row][col].state == Player2.getColor()) {
+			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastRowPlayed() != 3)
+					&& (Player2.getLastColPlayed() != 0)) {
 				do {
 					col--;
 					col = Math.max(0, col);
@@ -302,7 +315,7 @@ public class Game {
 				row = Math.min(3, row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row < 3));
 
-			if (grid[row][col].state == Player2.getColor()) {
+			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastRowPlayed() != 3)) {
 				do {
 					row--;
 					row = Math.max(0, row);
@@ -322,7 +335,8 @@ public class Game {
 				row = Math.min(3, row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row < 3) && (col > 0));
 
-			if (grid[row][col].state == Player2.getColor()) {
+			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastRowPlayed() != 3)
+					&& (Player2.getLastColPlayed() != 0)) {
 				do {
 					col++;
 					col = Math.min(3, col);
@@ -341,7 +355,7 @@ public class Game {
 				col = Math.max(0, col);
 			} while ((grid[row][col].state == Player1.getColor()) && (col > 0));
 
-			if (grid[row][col].state == Player2.getColor()) {
+			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastColPlayed() != 0)) {
 				do {
 					col++;
 					col = Math.min(3, col);
@@ -360,7 +374,8 @@ public class Game {
 				row = Math.max(0, row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row > 0) && (col > 0));
 
-			if (grid[row][col].state == Player2.getColor()) {
+			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastRowPlayed() != 0)
+					&& (Player2.getLastColPlayed() != 0)) {
 				do {
 					col++;
 					col = Math.min(3, col);
