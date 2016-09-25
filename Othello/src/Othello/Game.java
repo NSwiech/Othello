@@ -34,7 +34,8 @@ public class Game {
 	public static void startGame() {
 		int currentPlayer = 0;
 		boolean victory = false;
-		System.out.println("We are off to a great start, Vive la France");
+		System.out.println("We are off to a great start, Vive la France\n");
+		displayGrid();
 		while (!victory) {
 			if (currentPlayer % 2 == 0) {
 				System.out.println("\nThe White Player has to play.");
@@ -417,10 +418,16 @@ public class Game {
 		}
 		return;
 	}
+	public static void clearScreen() {  
+	    System.out.print("\033[H\033[2J");  
+	    System.out.flush();  
+	   } 
 
 	public static void displayGrid() {
+		System.out.flush();
+		System.out.println("   1 2 3 4");
 		for (int row = 0; row < 4; row++) {
-			String rowString = "|";
+			String rowString = row+1+" |";
 			for (int col = 0; col < 4; col++) {
 				if (grid[row][col].state == "available") {
 					rowString = rowString + " |";
