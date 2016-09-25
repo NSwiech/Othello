@@ -418,13 +418,9 @@ public class Game {
 		}
 		return;
 	}
-	public static void clearScreen() {  
-	    System.out.print("\033[H\033[2J");  
-	    System.out.flush();  
-	   } 
 
 	public static void displayGrid() {
-		System.out.flush();
+	
 		System.out.println("   1 2 3 4");
 		for (int row = 0; row < 4; row++) {
 			String rowString = row+1+" |";
