@@ -17,6 +17,7 @@ public class Game {
 	// public static int currentPlayer = 0;
 	public static Human Player1 = new Human(White);
 	public static Computer Player2 = new Computer(Black);
+	//public GameState GState = new GameState();
 
 	// ArrayList<??> ?? = new ArrayList<??>();
 
@@ -46,6 +47,7 @@ public class Game {
 			}
 			updateGrid(currentPlayer);
 			displayGrid();
+			
 			currentPlayer++;
 			if (currentPlayer == 16) {
 				victory = true;
@@ -60,7 +62,6 @@ public class Game {
 		}
 	}
 
-	// }
 	//{{-1,0}{-1,1}{0,1}{1,1}{1,0}{1,-1}{0,-1}{-1,-1}}
 	//   N,     NE,   E,  SE,   S,   SW,    W,     NW
 
