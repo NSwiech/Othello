@@ -22,28 +22,35 @@ public class Human implements Controllable {
 
 		while (!played) {
 			// Human enters 1-4 computer subtracts 1 to apply to arrays
-
-			do {
+			boolean validRowInput = false;
+			while (!validRowInput) {
 				System.out.println("Choose a row between 1 and 4");
 				Scanner rowChoice = new Scanner(System.in);
 				try {
-					row = rowChoice.nextInt() - 1;
+					row = Integer.parseInt(rowChoice.next()) - 1;
 
-				} catch (InputMismatchException e1) {
+				} catch (NumberFormatException e) {
 					System.out.println("Wrong input!\n");
 				}
-			} while ((row < 0) || (row > 5));//PROBLEM : NOT GOING AGAIN ON THE LOOP
+				if ((row > 0) && (row < 4)) {
+					validRowInput = true;
+				}
+			}
 
-			do {
+			boolean validColInput = false;
+			while (!validColInput) {
 				System.out.println("Choose a column between 1 and 4");
 				Scanner colChoice = new Scanner(System.in);
 				try {
-					col = colChoice.nextInt() - 1;
+					col = Integer.parseInt(colChoice.next()) - 1;
 
-				} catch (InputMismatchException e2) {
+				} catch (NumberFormatException e) {
 					System.out.println("Wrong input!\n");
 				}
-			} while ((col < 0) || (col > 5));//PROBLEM : NOT GOING AGAIN ON THE LOOP
+				if ((col > 0) && (col < 4)) {
+					validColInput = true;
+				}
+			}
 
 			if (Game.grid[row][col].state == "available") {
 				System.out.println("Legal move. You played.");
