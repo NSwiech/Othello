@@ -32,7 +32,7 @@ public class Human implements Controllable {
 				} catch (InputMismatchException e1) {
 					System.out.println("Wrong input!\n");
 				}
-			} while ((row < 0) || (row > 5));
+			} while ((row < 0) || (row > 5));//PROBLEM : NOT GOING AGAIN ON THE LOOP
 
 			do {
 				System.out.println("Choose a column between 1 and 4");
@@ -43,7 +43,7 @@ public class Human implements Controllable {
 				} catch (InputMismatchException e2) {
 					System.out.println("Wrong input!\n");
 				}
-			} while ((col < 0) || (col > 5));
+			} while ((col < 0) || (col > 5));//PROBLEM : NOT GOING AGAIN ON THE LOOP
 
 			if (Game.grid[row][col].state == "available") {
 				System.out.println("Legal move. You played.");
