@@ -83,7 +83,6 @@ public class Game {
 					System.out.println("@1");
 					grid[row][col].flip();
 				}
-				;
 			}
 
 			row = Player1.getLastRowPlayed();
@@ -107,7 +106,6 @@ public class Game {
 					System.out.println("@2");
 					grid[row][col].flip();
 				}
-				;
 			}
 
 			row = Player1.getLastRowPlayed();
@@ -126,7 +124,6 @@ public class Game {
 					System.out.println("@3");
 					grid[row][col].flip();
 				}
-				;
 			}
 
 			row = Player1.getLastRowPlayed();
@@ -150,7 +147,6 @@ public class Game {
 					System.out.println("@4");
 					grid[row][col].flip();
 				}
-				;
 			}
 
 			row = Player1.getLastRowPlayed();
@@ -169,7 +165,6 @@ public class Game {
 					System.out.println("@5");
 					grid[row][col].flip();
 				}
-				;
 			}
 
 			row = Player1.getLastRowPlayed();
@@ -194,7 +189,6 @@ public class Game {
 					System.out.println("@6");
 					grid[row][col].flip();
 				}
-				;
 			}
 
 			row = Player1.getLastRowPlayed();
@@ -216,7 +210,6 @@ public class Game {
 					grid[row][col].flip();
 					System.out.println(row + "" + col + "" + grid[row][col].state);
 				}
-				;
 			}
 
 			row = Player1.getLastRowPlayed();
@@ -240,7 +233,6 @@ public class Game {
 					System.out.println("@8");
 					grid[row][col].flip();
 				}
-				;
 			}
 		}
 
@@ -260,7 +252,6 @@ public class Game {
 					System.out.println("@@1");
 					grid[row][col].flip();
 				}
-				;
 			}
 
 			row = Player2.getLastRowPlayed();
@@ -284,7 +275,6 @@ public class Game {
 					System.out.println("@@2");
 					grid[row][col].flip();
 				}
-				;
 			}
 
 			row = Player2.getLastRowPlayed();
@@ -303,7 +293,6 @@ public class Game {
 					System.out.println("@@3");
 					grid[row][col].flip();
 				}
-				;
 			}
 
 			row = Player2.getLastRowPlayed();
@@ -327,7 +316,6 @@ public class Game {
 					System.out.println("@@4");
 					grid[row][col].flip();
 				}
-				;
 			}
 
 			row = Player2.getLastRowPlayed();
@@ -346,7 +334,6 @@ public class Game {
 					System.out.println("@@5");
 					grid[row][col].flip();
 				}
-				;
 			}
 
 			row = Player2.getLastRowPlayed();
@@ -371,7 +358,6 @@ public class Game {
 					System.out.println("@@6");
 					grid[row][col].flip();
 				}
-				;
 			}
 
 			row = Player2.getLastRowPlayed();
@@ -390,7 +376,6 @@ public class Game {
 					System.out.println("@@7");
 					grid[row][col].flip();
 				}
-				;
 			}
 
 			row = Player2.getLastRowPlayed();
@@ -414,7 +399,6 @@ public class Game {
 					System.out.println("@@8");
 					grid[row][col].flip();
 				}
-				;
 			}
 		}
 		return;
