@@ -17,12 +17,12 @@ public class Game {
 	public static Computer Player2 = new Computer(Black);
 
 	public static void main(String[] args) {
-		// main game loop
-		initializeGrid();// set each Slot of the grid to "available"
-		startGame();
+		Game program = new Game();
+		program.startGame();
 	}
 
-	public static void startGame() {
+	public void startGame() {
+		initializeGrid();// set each Slot of the grid to "available"
 		int currentPlayer = 0;
 		System.out.println("We are off to a great start, Vive la France\n");
 		displayGrid();
@@ -36,7 +36,7 @@ public class Game {
 				System.out.println("\nThe Black Player has to play.");
 				Player2.play();
 			}
-			updateGrid(currentPlayer);
+			updateGridVersion2(currentPlayer);
 			displayGrid();
 
 			currentPlayer++;
@@ -52,7 +52,7 @@ public class Game {
 		}
 	}
 
-	public static void updateGrid(int currentPlayer) {
+	public void updateGrid(int currentPlayer) {
 		int row, col;
 		if (currentPlayer % 2 == 0) {
 
@@ -379,8 +379,8 @@ public class Game {
 	// Nicklas Experiment
 	public void updateGridVersion2(int currentPlayer) {
 		int row, col;
-		checksP1 chkp1 = new checksP1();
-		checksP2 chkp2 = new checksP2();
+		Game.checksP1 chkp1 = new Game.checksP1();
+		Game.checksP2 chkp2 = new Game.checksP2();
 
 		if (currentPlayer % 2 == 0) {
 			row = Player1.getLastRowPlayed();
