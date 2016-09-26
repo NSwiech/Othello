@@ -68,9 +68,10 @@ public class Game {
 	public static void updateGrid(int currentPlayer) {
 		int row, col;
 		if (currentPlayer % 2 == 0) {
+			
+			// check N (North)
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
-			// check N (North)
 			do {
 				row--;
 				row = Math.max(0, row);
@@ -84,11 +85,10 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
+			
+			// check NE (North East)
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
-
-			// check NE (North East)
 			do {
 				col++;
 				col = Math.min(3, col);
@@ -107,11 +107,10 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
+		
+			// check E
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
-
-			// check E
 			do {
 				col++;
 				col = Math.min(3, col);
@@ -126,10 +125,9 @@ public class Game {
 				}
 			}
 
+			// check SE
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
-
-			// check SE
 			do {
 				col++;
 				col = Math.min(3, col);
@@ -149,10 +147,9 @@ public class Game {
 				}
 			}
 
+			// check S
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
-
-			// check S
 			do {
 				row++;
 				row = Math.min(3, row);
@@ -167,11 +164,9 @@ public class Game {
 				}
 			}
 
+			// check SW
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
-
-			// check SW
-
 			do {
 				col--;
 				col = Math.max(0, col);
@@ -191,10 +186,9 @@ public class Game {
 				}
 			}
 
+			// check W
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
-
-			// check W
 			do {
 				col--;
 				col = Math.max(0, col);
@@ -212,10 +206,9 @@ public class Game {
 				}
 			}
 
+			// check NW
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
-
-			// check NW
 			do {
 				col--;
 				col = Math.max(0, col);
@@ -237,9 +230,9 @@ public class Game {
 		}
 
 		else {
+			// check N
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
-			// check N
 			do {
 				row--;
 				row = Math.max(0, row);
@@ -254,10 +247,9 @@ public class Game {
 				}
 			}
 
+			// check NE
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
-
-			// check NE
 			do {
 				col++;
 				col = Math.min(3, col);
@@ -277,10 +269,9 @@ public class Game {
 				}
 			}
 
+			// check E
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
-
-			// check E
 			do {
 				col++;
 				col = Math.min(3, col);
@@ -295,10 +286,9 @@ public class Game {
 				}
 			}
 
+			// check SE
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
-
-			// check SE
 			do {
 				col++;
 				col = Math.min(3, col);
@@ -318,10 +308,9 @@ public class Game {
 				}
 			}
 
+			// check S
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
-
-			// check S
 			do {
 				row++;
 				row = Math.min(3, row);
@@ -336,11 +325,9 @@ public class Game {
 				}
 			}
 
+			// check SW
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
-
-			// check SW
-
 			do {
 				col--;
 				col = Math.max(0, col);
@@ -360,10 +347,9 @@ public class Game {
 				}
 			}
 
+			// check W
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
-
-			// check W
 			do {
 				col--;
 				col = Math.max(0, col);
@@ -378,10 +364,9 @@ public class Game {
 				}
 			}
 
+			// check NW
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
-
-			// check NW
 			do {
 				col--;
 				col = Math.max(0, col);
