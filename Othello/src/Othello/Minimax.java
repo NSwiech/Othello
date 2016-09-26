@@ -12,7 +12,7 @@ public class Minimax {
 	//A computer draw shall not take longer than 5 seconds
 
 	private Slot[][] board = new Slot[4][4];
-	private Position action = new Position();
+
 	
 	
 }
