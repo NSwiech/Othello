@@ -2,7 +2,7 @@ package Othello;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+//import java.util.Scanner.*;
 public class Human implements Controllable {
 
 	private String color;
@@ -23,31 +23,35 @@ public class Human implements Controllable {
 		while (!played) {
 			// Human enters 1-4 computer subtracts 1 to apply to arrays
 			boolean validRowInput = false;
+			
 			while (!validRowInput) {
 				System.out.println("Choose a row between 1 and 4");
 				Scanner rowChoice = new Scanner(System.in);
 				try {
 					row = Integer.parseInt(rowChoice.next()) - 1;
+					
 
 				} catch (NumberFormatException e) {
 					System.out.println("Wrong input!\n");
 				}
-				if ((row > 0) && (row < 4)) {
+				
+				if ((row >= 0) && (row < 4)) {
 					validRowInput = true;
 				}
+				
 			}
-
+		
 			boolean validColInput = false;
 			while (!validColInput) {
 				System.out.println("Choose a column between 1 and 4");
 				Scanner colChoice = new Scanner(System.in);
 				try {
 					col = Integer.parseInt(colChoice.next()) - 1;
-
 				} catch (NumberFormatException e) {
 					System.out.println("Wrong input!\n");
 				}
-				if ((col > 0) && (col < 4)) {
+				
+				if ((col >= 0) && (col < 4)) {
 					validColInput = true;
 				}
 			}
@@ -60,6 +64,7 @@ public class Human implements Controllable {
 				System.out.println("Not legal move.");
 			}
 		}
+		
 		return;
 	}
 
