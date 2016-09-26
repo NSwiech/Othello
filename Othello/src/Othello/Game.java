@@ -13,30 +13,21 @@ public class Game {
 	public boolean actions[][] = new boolean[4][4];
 	public static final String White = "White";
 	public static final String Black = "Black";
-	// public static String player = "White";
-	// public static int currentPlayer = 0;
 	public static Human Player1 = new Human(White);
 	public static Computer Player2 = new Computer(Black);
-	//public GameState GState = new GameState();
-
-	// ArrayList<??> ?? = new ArrayList<??>();
 
 	public static void main(String[] args) {
 		// main game loop
 		initializeGrid();// set each Slot of the grid to "available"
 		startGame();
-
-		// for (int n = 0; n < 16; n++) {
-		// play();
-		// updateGrid();
-		// displayGrid();
 	}
 
 	public static void startGame() {
 		int currentPlayer = 0;
-		boolean victory = false;
 		System.out.println("We are off to a great start, Vive la France\n");
 		displayGrid();
+		
+		boolean victory = false;
 		while (!victory) {
 			if (currentPlayer % 2 == 0) {
 				System.out.println("\nThe White Player has to play.");
@@ -61,9 +52,6 @@ public class Game {
 			}
 		}
 	}
-
-	//{{-1,0}{-1,1}{0,1}{1,1}{1,0}{1,-1}{0,-1}{-1,-1}}
-	//   N,     NE,   E,  SE,   S,   SW,    W,     NW
 
 	public static void updateGrid(int currentPlayer) {
 		int row, col;
@@ -388,7 +376,8 @@ public class Game {
 		}
 		return;
 	}
-
+	
+	//Display current game status in the console
 	public static void displayGrid() {
 	
 		System.out.println("   1 2 3 4");
@@ -427,7 +416,7 @@ public class Game {
 		score[1] = noOfBlack;
 		return score;
 	}
-
+	// Set each Slot of the grid to "available"
 	public static void initializeGrid() {
 		for (int row = 0; row < 4; row++) {
 			for (int col = 0; col < 4; col++) {
