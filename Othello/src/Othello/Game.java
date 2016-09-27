@@ -36,7 +36,8 @@ public class Game {
 				System.out.println("\nThe Black Player has to play.");
 				Player2.play();
 			}
-			updateGridVersion2(currentPlayer);
+			//updateGridVersion2(currentPlayer);
+			updateGrid(currentPlayer);
 			displayGrid();
 
 			currentPlayer++;
@@ -51,11 +52,13 @@ public class Game {
 			}
 		}
 	}
+	// this function is currently not being called
+	
+	// instead see updateGridVersion2
 
 	public void updateGrid(int currentPlayer) {
 		int row, col;
 		if (currentPlayer % 2 == 0) {
-
 			// check N (North)
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
@@ -63,7 +66,7 @@ public class Game {
 				row--;
 				row = Math.max(0, row);
 			} while ((grid[row][col].state == Player2.getColor() && (row > 0)));
-
+			//
 			if ((grid[row][col].state == Player1.getColor()) && ((Player1.getLastRowPlayed() != 0))) {
 				while (row < Player1.getLastRowPlayed() - 1) {
 					row++;
@@ -72,7 +75,6 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
 			// check NE (North East)
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
@@ -82,7 +84,7 @@ public class Game {
 				row--;
 				row = Math.max(0, row);
 			} while ((grid[row][col].state == Player2.getColor()) && (row > 0) && (col < 3));
-
+			//
 			if ((grid[row][col].state == Player1.getColor()) && (Player1.getLastRowPlayed() != 0)
 					&& (Player1.getLastColPlayed() != 3)) {
 				while ((row < Player1.getLastRowPlayed() - 1) && col > Player1.getLastColPlayed() + 1) {
@@ -94,7 +96,6 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
 			// check E
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
@@ -102,7 +103,7 @@ public class Game {
 				col++;
 				col = Math.min(3, col);
 			} while ((grid[row][col].state == Player2.getColor()) && (col < 3));
-
+			//
 			if ((grid[row][col].state == Player1.getColor()) && (Player1.getLastColPlayed() != 3)) {
 				while (col > Player1.getLastColPlayed() + 1) {
 					col--;
@@ -111,7 +112,6 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
 			// check SE
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
@@ -121,7 +121,7 @@ public class Game {
 				row++;
 				row = Math.min(3, row);
 			} while ((grid[row][col].state == Player2.getColor()) && (row < 3) && (col < 3));
-
+			//
 			if ((grid[row][col].state == Player1.getColor()) && (Player1.getLastRowPlayed() != 3)
 					&& (Player1.getLastColPlayed() != 3)) {
 				while ((row > Player1.getLastRowPlayed() + 1) && col > Player1.getLastColPlayed() + 1) {
@@ -133,7 +133,6 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
 			// check S
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
@@ -141,7 +140,7 @@ public class Game {
 				row++;
 				row = Math.min(3, row);
 			} while ((grid[row][col].state == Player2.getColor()) && (row < 3));
-
+			//
 			if ((grid[row][col].state == Player1.getColor()) && (Player1.getLastRowPlayed() != 3)) {
 				while (row > Player1.getLastRowPlayed() + 1) {
 					row--;
@@ -150,7 +149,6 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
 			// check SW
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
@@ -160,7 +158,7 @@ public class Game {
 				row++;
 				row = Math.min(3, row);
 			} while ((grid[row][col].state == Player2.getColor()) && (row < 3) && (col > 0));
-
+			//
 			if ((grid[row][col].state == Player1.getColor()) && (Player1.getLastRowPlayed() != 3)
 					&& (Player1.getLastColPlayed() != 0)) {
 				while ((row > Player1.getLastRowPlayed() + 1) && col < Player1.getLastColPlayed() - 1) {
@@ -172,7 +170,6 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
 			// check W
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
@@ -180,9 +177,9 @@ public class Game {
 				col--;
 				col = Math.max(0, col);
 			} while ((grid[row][col].state == Player2.getColor()) && (col > 0));
-
+			//
 			if ((grid[row][col].state == Player1.getColor()) && (Player1.getLastColPlayed() != 0)) {
-
+				//
 				while (col < Player1.getLastColPlayed() - 1) {
 					col++;
 					col = Math.min(3, col);
@@ -192,7 +189,6 @@ public class Game {
 					System.out.println(row + "" + col + "" + grid[row][col].state);
 				}
 			}
-
 			// check NW
 			row = Player1.getLastRowPlayed();
 			col = Player1.getLastColPlayed();
@@ -202,7 +198,7 @@ public class Game {
 				row--;
 				row = Math.max(0, row);
 			} while ((grid[row][col].state == Player2.getColor()) && (row > 0) && (col > 0));
-
+			//
 			if ((grid[row][col].state == Player1.getColor()) && (Player1.getLastRowPlayed() != 0)
 					&& (Player1.getLastColPlayed() != 0)) {
 				while ((row < Player1.getLastRowPlayed() - 1) && col < Player1.getLastColPlayed() - 1) {
@@ -214,9 +210,7 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-		}
-
-		else {
+		} else {
 			// check N
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
@@ -224,7 +218,7 @@ public class Game {
 				row--;
 				row = Math.max(0, row);
 			} while ((grid[row][col].state == Player1.getColor() && (row > 0)));
-
+			//
 			if ((grid[row][col].state == Player2.getColor()) && ((Player2.getLastRowPlayed() != 0))) {
 				while (row < Player2.getLastRowPlayed() - 1) {
 					row++;
@@ -233,7 +227,6 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
 			// check NE
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
@@ -243,7 +236,7 @@ public class Game {
 				row--;
 				row = Math.max(0, row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row > 0) && (col < 3));
-
+			//
 			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastRowPlayed() != 0)
 					&& (Player2.getLastColPlayed() != 3)) {
 				while ((row < Player2.getLastRowPlayed() - 1) && col > Player2.getLastColPlayed() + 1) {
@@ -255,7 +248,6 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
 			// check E
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
@@ -263,7 +255,7 @@ public class Game {
 				col++;
 				col = Math.min(3, col);
 			} while ((grid[row][col].state == Player1.getColor()) && (col < 3));
-
+			//
 			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastColPlayed() != 3)) {
 				while (col > Player2.getLastColPlayed() + 1) {
 					col--;
@@ -272,7 +264,6 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
 			// check SE
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
@@ -282,7 +273,7 @@ public class Game {
 				row++;
 				row = Math.min(3, row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row < 3) && (col < 3));
-
+			//
 			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastRowPlayed() != 3)
 					&& (Player2.getLastColPlayed() != 0)) {
 				while ((row > Player2.getLastRowPlayed() + 1) && col > Player2.getLastColPlayed() + 1) {
@@ -294,7 +285,6 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
 			// check S
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
@@ -302,7 +292,7 @@ public class Game {
 				row++;
 				row = Math.min(3, row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row < 3));
-
+			//
 			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastRowPlayed() != 3)) {
 				while (row > Player2.getLastRowPlayed() + 1) {
 					row--;
@@ -311,7 +301,6 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
 			// check SW
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
@@ -321,7 +310,7 @@ public class Game {
 				row++;
 				row = Math.min(3, row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row < 3) && (col > 0));
-
+			//
 			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastRowPlayed() != 3)
 					&& (Player2.getLastColPlayed() != 0)) {
 				while ((row > Player2.getLastRowPlayed() + 1) && col < Player2.getLastColPlayed() - 1) {
@@ -333,7 +322,6 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
 			// check W
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
@@ -341,7 +329,7 @@ public class Game {
 				col--;
 				col = Math.max(0, col);
 			} while ((grid[row][col].state == Player1.getColor()) && (col > 0));
-
+			//
 			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastColPlayed() != 0)) {
 				while (col < Player2.getLastColPlayed() - 1) {
 					col++;
@@ -350,7 +338,6 @@ public class Game {
 					grid[row][col].flip();
 				}
 			}
-
 			// check NW
 			row = Player2.getLastRowPlayed();
 			col = Player2.getLastColPlayed();
@@ -360,7 +347,7 @@ public class Game {
 				row--;
 				row = Math.max(0, row);
 			} while ((grid[row][col].state == Player1.getColor()) && (row > 0) && (col > 0));
-
+			//
 			if ((grid[row][col].state == Player2.getColor()) && (Player2.getLastRowPlayed() != 0)
 					&& (Player2.getLastColPlayed() != 0)) {
 				while ((row < Player2.getLastRowPlayed() - 1) && col < Player2.getLastColPlayed() - 1) {
@@ -373,56 +360,80 @@ public class Game {
 				}
 			}
 		}
-		return;
+		return; // ??? its a void function
 	}
-
+	// *************************************************************************
+	//
 	// Nicklas Experiment
+	// 
+	// *************************************************************************
 	public void updateGridVersion2(int currentPlayer) {
 		int row, col;
-		Game.checksP1 chkp1 = new Game.checksP1();
-		Game.checksP2 chkp2 = new Game.checksP2();
-
+		row = Player1.getLastRowPlayed();
+		col = Player1.getLastColPlayed();
+		checksP1 chkp1 = new checksP1();
+		checksP2 chkp2 = new checksP2();
 		if (currentPlayer % 2 == 0) {
-			row = Player1.getLastRowPlayed();
-			col = Player1.getLastColPlayed();
+			
+			// Border check for north only. Check for north only necessary
+			// when last move played was on row>1 so skip this particular check
+			// that tries to step north of north border
+			// if move is on row==1 you cannot flip anything on row=0
+			//
 
-			chkp1.checkN4P1(row, col);
-			chkp1.checkNE4P1(row, col);
-			chkp1.checkE4P1(row, col);
-			chkp1.checkSE4P1(row, col);
-
-			chkp1.checkS4P1(row, col);
-			chkp1.checkSW4P1(row, col);
-			chkp1.checkW4P1(row, col);
-			chkp1.checkNW4P1(row, col);
+			// These if statements has taken some careful thinking and testing
+			// if done right it will skip 25% of execution time
+			// if (row>1){
+			chkp1.checkN_P1(row, col);
+			// }
+			// if ((row>1)&&(col<2)){
+			chkp1.checkNEP1(row, col);
+			// }
+			// if ((col<2)){
+			chkp1.checkE_P1(row, col);
+			// }
+			// if ((row<2)&&(col<2)){
+			chkp1.checkSEP1(row, col);
+			// }
+			// if ((row<2)){
+			chkp1.checkS_P1(row, col);
+			// }
+			// if ((row<2)&&(col>1)){
+			chkp1.checkSWP1(row, col);
+			// }
+			// if ((col>1)){
+			chkp1.checkW_P1(row, col);
+			// }
+			// if ((row>1)&&(col>1)){
+			chkp1.checkNWP1(row, col);
+			// }
 		} else {
-			row = Player1.getLastRowPlayed();
-			col = Player1.getLastColPlayed();
+			
+			chkp2.checkN_P2(row, col);
+			chkp2.checkNEP2(row, col);
+			chkp2.checkE_P2(row, col);
+			chkp2.checkSEP2(row, col);
 
-			chkp2.checkN4P2(row, col);
-			chkp2.checkNE4P2(row, col);
-			chkp2.checkE4P2(row, col);
-			chkp2.checkSE4P2(row, col);
-
-			chkp2.checkS4P2(row, col);
-			chkp2.checkSW4P2(row, col);
-			chkp2.checkW4P2(row, col);
-			chkp2.checkNW4P2(row, col);
+			chkp2.checkS_P2(row, col);
+			chkp2.checkSWP2(row, col);
+			chkp2.checkW_P2(row, col);
+			chkp2.checkNWP2(row, col);
 		}
-
 	}
-	public class checksP1 {
+
+	class checksP1 {
 		// check N (North for Player1)
-		public void checkN4P1(int rw, int cl) {
+		public void checkN_P1(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			// to avoid making the same calls 4 times * 8 functions
-			// lets make them parameters to the function and call them outside just once
-			//String P1Color = p1color;
-			//String P2Color = p2color;
-			//int P1LastRowPlayed = p1lastrowplayed;
-			
-			//if (row>0){ //border check for north only. Skipps case when on border
+			// perhaps make them parameters to the function and call them
+			// outside just once
+			// speeds up execution ??
+			//
+			// String P1Color = p1color;
+			// String P2Color = p2color;
+			// int P1LastRowPlayed = p1lastrowplayed;
 			do {
 				row--;
 				row = Math.max(0, row);
@@ -432,21 +443,24 @@ public class Game {
 				while (row < Player1.getLastRowPlayed() - 1) {
 					row++;
 					row = Math.min(3, row);
-					//setup a global debug variable and the debug tools can stay in the code
-					//when debug is needed set it to true where it is defined
-					//if (globalBoolDebug){ 
-						System.out.println("@1");
-					//}
+					// setup a global debug variable and the debug tools can
+					// stay in the code
+					// when debug is needed set it to true where it is defined
+					// if (globalBoolDebug){
+					System.out.println("@1");
+					// }
 					grid[row][col].flip();
 				}
 			}
 		}
-		
+
 		// check NE (North East)
-		public void checkNE4P1(int rw, int cl) {
+		public void checkNEP1(int rw, int cl) {
 			int row = rw;
 			int col = cl;
-			//if ((row>0)&&(col<3)){ //border check for northeast only. Skipps case when on border
+			// here is an idea to skip exec
+			// if ((row>1)&&(col<2)){ //border check for northeast only. Skipps
+			// case when on border
 			do {
 				col++;
 				col = Math.min(3, col);
@@ -468,7 +482,7 @@ public class Game {
 		}
 
 		// check E
-		public void checkE4P1(int rw, int cl) {
+		public void checkE_P1(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -487,7 +501,7 @@ public class Game {
 		}
 
 		// check SE
-		public void checkSE4P1(int rw, int cl) {
+		public void checkSEP1(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -511,7 +525,7 @@ public class Game {
 		}
 
 		// check S
-		public void checkS4P1(int rw, int cl) {
+		public void checkS_P1(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -530,7 +544,7 @@ public class Game {
 		}
 
 		// check SW
-		public void checkSW4P1(int rw, int cl) {
+		public void checkSWP1(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -554,7 +568,7 @@ public class Game {
 		}
 
 		// check W
-		public void checkW4P1(int rw, int cl) {
+		public void checkW_P1(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -576,7 +590,7 @@ public class Game {
 		}
 
 		// check NW
-		public void checkNW4P1(int rw, int cl) {
+		public void checkNWP1(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -603,7 +617,7 @@ public class Game {
 
 	class checksP2 {
 		// check N
-		public void checkN4P2(int rw, int cl) {
+		public void checkN_P2(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -622,7 +636,7 @@ public class Game {
 		}
 
 		// check NE
-		public void checkNE4P2(int rw, int cl) {
+		public void checkNEP2(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -646,7 +660,7 @@ public class Game {
 		}
 
 		// check E
-		public void checkE4P2(int rw, int cl) {
+		public void checkE_P2(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -665,7 +679,7 @@ public class Game {
 		}
 
 		// check SE
-		public void checkSE4P2(int rw, int cl) {
+		public void checkSEP2(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -689,7 +703,7 @@ public class Game {
 		}
 
 		// check S
-		public void checkS4P2(int rw, int cl) {
+		public void checkS_P2(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -708,7 +722,7 @@ public class Game {
 		}
 
 		// check SW
-		public void checkSW4P2(int rw, int cl) {
+		public void checkSWP2(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -732,7 +746,7 @@ public class Game {
 		}
 
 		// check W
-		public void checkW4P2(int rw, int cl) {
+		public void checkW_P2(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -751,7 +765,7 @@ public class Game {
 		}
 
 		// check NW
-		public void checkNW4P2(int rw, int cl) {
+		public void checkNWP2(int rw, int cl) {
 			int row = rw;
 			int col = cl;
 			do {
@@ -811,6 +825,7 @@ public class Game {
 				}
 			}
 		}
+		
 		score[0] = noOfWhite;
 		score[1] = noOfBlack;
 		return score;
