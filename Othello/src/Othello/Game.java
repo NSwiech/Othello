@@ -36,8 +36,8 @@ public class Game {
 				System.out.println("\nThe Black Player has to play.");
 				Player2.play();
 			}
-			//updateGridVersion2(currentPlayer);
-			updateGrid(currentPlayer);
+			updateGridVersion2(currentPlayer);
+			//updateGrid(currentPlayer);
 			displayGrid();
 
 			currentPlayer++;
@@ -368,9 +368,11 @@ public class Game {
 	// 
 	// *************************************************************************
 	public void updateGridVersion2(int currentPlayer) {
-		int row, col;
-		row = Player1.getLastRowPlayed();
-		col = Player1.getLastColPlayed();
+		int rowW, colW, rowB, colB;
+		rowW = Player1.getLastRowPlayed();
+		colW = Player1.getLastColPlayed();
+		rowB = Player2.getLastRowPlayed();
+		colB = Player2.getLastColPlayed();
 		checksP1 chkp1 = new checksP1();
 		checksP2 chkp2 = new checksP2();
 		if (currentPlayer % 2 == 0) {
@@ -383,45 +385,60 @@ public class Game {
 
 			// These if statements has taken some careful thinking and testing
 			// if done right it will skip 25% of execution time
-			// if (row>1){
-			chkp1.checkN_P1(row, col);
-			// }
-			// if ((row>1)&&(col<2)){
-			chkp1.checkNEP1(row, col);
-			// }
-			// if ((col<2)){
-			chkp1.checkE_P1(row, col);
-			// }
-			// if ((row<2)&&(col<2)){
-			chkp1.checkSEP1(row, col);
-			// }
-			// if ((row<2)){
-			chkp1.checkS_P1(row, col);
-			// }
-			// if ((row<2)&&(col>1)){
-			chkp1.checkSWP1(row, col);
-			// }
-			// if ((col>1)){
-			chkp1.checkW_P1(row, col);
-			// }
-			// if ((row>1)&&(col>1)){
-			chkp1.checkNWP1(row, col);
-			// }
+			if (rowW>1){
+			chkp1.checkN_P1(rowW, colW);
+			}
+			if ((rowW>1)&&(colW<2)){
+			chkp1.checkNEP1(rowW, colW);
+			}
+			if ((colW<2)){
+			chkp1.checkE_P1(rowW, colW);
+			}
+			if ((rowW<2)&&(colW<2)){
+			chkp1.checkSEP1(rowW, colW);
+			}
+			if ((rowW<2)){
+			chkp1.checkS_P1(rowW, colW);
+			}
+			if ((rowW<2)&&(colW>1)){
+			chkp1.checkSWP1(rowW, colW);
+			}
+			if ((colW>1)){
+			chkp1.checkW_P1(rowW, colW);
+			}
+			if ((rowW>1)&&(colW>1)){
+			chkp1.checkNWP1(rowW, colW);
+			}
 		} else {
 			
-			chkp2.checkN_P2(row, col);
-			chkp2.checkNEP2(row, col);
-			chkp2.checkE_P2(row, col);
-			chkp2.checkSEP2(row, col);
-
-			chkp2.checkS_P2(row, col);
-			chkp2.checkSWP2(row, col);
-			chkp2.checkW_P2(row, col);
-			chkp2.checkNWP2(row, col);
+			if (rowB>1){
+			chkp2.checkN_P2(rowB, colB);
+			}
+			if ((rowB>1)&&(colB<2)){
+			chkp2.checkNEP2(rowB, colB);
+			}
+			if ((colB<2)){
+			chkp2.checkE_P2(rowB, colB);
+			}
+			if ((rowB<2)&&(colB<2)){
+			chkp2.checkSEP2(rowB, colB);
+			}
+			if ((rowB<2)){
+			chkp2.checkS_P2(rowB, colB);
+			}
+			if ((rowB<2)&&(colB>1)){
+			chkp2.checkSWP2(rowB, colB);
+			}
+			if ((colB>1)){
+			chkp2.checkW_P2(rowB, colB);
+			}
+			if ((rowB>1)&&(colB>1)){
+			chkp2.checkNWP2(rowB, colB);
+			}
 		}
 	}
 
-	class checksP1 {
+	public class checksP1 {
 		// check N (North for Player1)
 		public void checkN_P1(int rw, int cl) {
 			int row = rw;
@@ -791,6 +808,7 @@ public class Game {
 	}
 
 	// Display current game status in the console
+	
 	public static void displayGrid() {
 
 		System.out.println("   1 2 3 4");
