@@ -39,6 +39,8 @@ public class GameState {
 		}
 	};
 	// Array of all directions
+	//{{-1,0}{-1,1}{0,1}{1,1}{1,0}{1,-1}{0,-1}{-1,-1}}
+	//   N,     NE,   E,  SE,   S,   SW,    W,     NW
 	Dir N  = new Dir(-1,0);
 	Dir NE = new Dir(-1,1);
 	Dir E  = new Dir(0,1);
@@ -47,12 +49,11 @@ public class GameState {
 	Dir SW = new Dir(1,-1);
 	Dir W  = new Dir(0,-1);
 	Dir NW = new Dir(-1,-1);
-	Dir[] direcions = {N,NE,E,SE,S,SW,W,NW};
+	Dir[] dirs = {N,NE,E,SE,S,SW,W,NW};
 	
 
 	
-	//{{-1,0}{-1,1}{0,1}{1,1}{1,0}{1,-1}{0,-1}{-1,-1}}
-	//   N,     NE,   E,  SE,   S,   SW,    W,     NW
+
 
 }
 
