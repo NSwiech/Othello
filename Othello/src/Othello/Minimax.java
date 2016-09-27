@@ -1,7 +1,9 @@
 package Othello;
 
 public class Minimax {
-	private final int MAX_DEAPTH = 16; //search cut-off
+	private final int MAX_DEPTH = 16; //search cut-off
+	private int searchdepth; //  The depth of the search
+	private int noOfNodesXd; //  How many nodes were examined
 	
 	//TODO
 	//The following shall be printed after each draw:
