@@ -47,7 +47,7 @@ public class Game {
 			}
 		}
 	}
-	
+
 	// flips slots in the grid after a players make a move
 	public void updateGrid(int currentPlayer) {
 		int rowW, colW, rowB, colB;
@@ -58,63 +58,55 @@ public class Game {
 		checksP1 chkp1 = new checksP1();
 		checksP2 chkp2 = new checksP2();
 		if (currentPlayer % 2 == 0) {
-			
-			// Border check for north only. Check for north only necessary
-			// when last move played was on row>1 so skip this particular check
-			// that tries to step north of north border
-			// if move is on row==1 you cannot flip anything on row=0
-			//
 
-			// These if statements has taken some careful thinking and testing
-			// if they are done right they will skip 25% of execution time
-			if (rowW>1){
+			if (rowW > 1) {
 				chkp1.checkN_P1(rowW, colW);
 			}
-			if ((rowW>1)&&(colW<2)){
+			if ((rowW > 1) && (colW < 2)) {
 				chkp1.checkNEP1(rowW, colW);
 			}
-			if ((colW<2)){
+			if ((colW < 2)) {
 				chkp1.checkE_P1(rowW, colW);
 			}
-			if ((rowW<2)&&(colW<2)){
+			if ((rowW < 2) && (colW < 2)) {
 				chkp1.checkSEP1(rowW, colW);
 			}
-			if ((rowW<2)){
+			if ((rowW < 2)) {
 				chkp1.checkS_P1(rowW, colW);
 			}
-			if ((rowW<2)&&(colW>1)){
+			if ((rowW < 2) && (colW > 1)) {
 				chkp1.checkSWP1(rowW, colW);
 			}
-			if ((colW>1)){
+			if ((colW > 1)) {
 				chkp1.checkW_P1(rowW, colW);
 			}
-			if ((rowW>1)&&(colW>1)){
+			if ((rowW > 1) && (colW > 1)) {
 				chkp1.checkNWP1(rowW, colW);
 			}
 		} else {
-			
-			if (rowB>1){
+
+			if (rowB > 1) {
 				chkp2.checkN_P2(rowB, colB);
 			}
-			if ((rowB>1)&&(colB<2)){
+			if ((rowB > 1) && (colB < 2)) {
 				chkp2.checkNEP2(rowB, colB);
 			}
-			if ((colB<2)){
+			if ((colB < 2)) {
 				chkp2.checkE_P2(rowB, colB);
 			}
-			if ((rowB<2)&&(colB<2)){
+			if ((rowB < 2) && (colB < 2)) {
 				chkp2.checkSEP2(rowB, colB);
 			}
-			if ((rowB<2)){
+			if ((rowB < 2)) {
 				chkp2.checkS_P2(rowB, colB);
 			}
-			if ((rowB<2)&&(colB>1)){
+			if ((rowB < 2) && (colB > 1)) {
 				chkp2.checkSWP2(rowB, colB);
 			}
-			if ((colB>1)){
+			if ((colB > 1)) {
 				chkp2.checkW_P2(rowB, colB);
 			}
-			if ((rowB>1)&&(colB>1)){
+			if ((rowB > 1) && (colB > 1)) {
 				chkp2.checkNWP2(rowB, colB);
 			}
 		}
@@ -134,8 +126,8 @@ public class Game {
 			// String P1Color = p1color;
 			// String P2Color = p2color;
 			// int P1LastRowPlayed = p1lastrowplayed;
-			
-			// Step North until end of board or 
+
+			// Step North until end of board or
 			// until no more slots of opposite colour are found
 			do {
 				row--;
@@ -493,7 +485,7 @@ public class Game {
 	}
 
 	// Display current game status in the console
-	
+
 	public static void displayGrid() {
 
 		System.out.println("   1 2 3 4");
@@ -528,7 +520,7 @@ public class Game {
 				}
 			}
 		}
-		
+
 		score[0] = noOfWhite;
 		score[1] = noOfBlack;
 		return score;
