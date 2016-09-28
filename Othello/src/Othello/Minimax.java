@@ -22,30 +22,5 @@ public class Minimax {
 	private Slot[][] board = new Slot[4][4];
 
 	
-	private Node n1 = new Node(6534,1,2,"jox");
-	int h1 = n1.hashCode(); // interesting.....
 	
-}
-class Node{
-	private String parentNodeID; 
-	
-	//private String[] childrenIDs; // is knowing you parent enough. 
-	//does parent need to store child names?
-	
-	private String nodeID; 
-	private int value = Integer.MIN_VALUE;
-	private int alfa = Integer.MIN_VALUE;
-	private int beta = Integer.MAX_VALUE;
-	
-	//Constructor
-	public Node(int v,int a,int b, String parNodeID){
-		this.value = v;
-		this.alfa = a;
-		this.beta = b;
-		this.parentNodeID = parNodeID;
-	}
-
-	public String toString(){
-		return "ID:" + nodeID + "Value:" + value + " alfa:" + alfa + ", beta:" + beta;
-	}
 }
