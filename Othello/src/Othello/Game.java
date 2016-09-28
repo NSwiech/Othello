@@ -2,10 +2,6 @@ package Othello;
 
 import java.util.ArrayList;
 
-//TODO while instead of do/while
-//TODO not flipping yourself!
-//TODO working on line 189
-
 public class Game {
 
 	public static Slot[][] grid = new Slot[4][4];
@@ -51,12 +47,8 @@ public class Game {
 			}
 		}
 	}
-
-	// *************************************************************************
-	//
-	// Nicklas Experiment
-	// 
-	// *************************************************************************
+	
+	// flips slots in the grid after a players make a move
 	public void updateGrid(int currentPlayer) {
 		int rowW, colW, rowB, colB;
 		rowW = Player1.getLastRowPlayed();
@@ -74,56 +66,56 @@ public class Game {
 			//
 
 			// These if statements has taken some careful thinking and testing
-			// if done right it will skip 25% of execution time
+			// if they are done right they will skip 25% of execution time
 			if (rowW>1){
-			chkp1.checkN_P1(rowW, colW);
+				chkp1.checkN_P1(rowW, colW);
 			}
 			if ((rowW>1)&&(colW<2)){
-			chkp1.checkNEP1(rowW, colW);
+				chkp1.checkNEP1(rowW, colW);
 			}
 			if ((colW<2)){
-			chkp1.checkE_P1(rowW, colW);
+				chkp1.checkE_P1(rowW, colW);
 			}
 			if ((rowW<2)&&(colW<2)){
-			chkp1.checkSEP1(rowW, colW);
+				chkp1.checkSEP1(rowW, colW);
 			}
 			if ((rowW<2)){
-			chkp1.checkS_P1(rowW, colW);
+				chkp1.checkS_P1(rowW, colW);
 			}
 			if ((rowW<2)&&(colW>1)){
-			chkp1.checkSWP1(rowW, colW);
+				chkp1.checkSWP1(rowW, colW);
 			}
 			if ((colW>1)){
-			chkp1.checkW_P1(rowW, colW);
+				chkp1.checkW_P1(rowW, colW);
 			}
 			if ((rowW>1)&&(colW>1)){
-			chkp1.checkNWP1(rowW, colW);
+				chkp1.checkNWP1(rowW, colW);
 			}
 		} else {
 			
 			if (rowB>1){
-			chkp2.checkN_P2(rowB, colB);
+				chkp2.checkN_P2(rowB, colB);
 			}
 			if ((rowB>1)&&(colB<2)){
-			chkp2.checkNEP2(rowB, colB);
+				chkp2.checkNEP2(rowB, colB);
 			}
 			if ((colB<2)){
-			chkp2.checkE_P2(rowB, colB);
+				chkp2.checkE_P2(rowB, colB);
 			}
 			if ((rowB<2)&&(colB<2)){
-			chkp2.checkSEP2(rowB, colB);
+				chkp2.checkSEP2(rowB, colB);
 			}
 			if ((rowB<2)){
-			chkp2.checkS_P2(rowB, colB);
+				chkp2.checkS_P2(rowB, colB);
 			}
 			if ((rowB<2)&&(colB>1)){
-			chkp2.checkSWP2(rowB, colB);
+				chkp2.checkSWP2(rowB, colB);
 			}
 			if ((colB>1)){
-			chkp2.checkW_P2(rowB, colB);
+				chkp2.checkW_P2(rowB, colB);
 			}
 			if ((rowB>1)&&(colB>1)){
-			chkp2.checkNWP2(rowB, colB);
+				chkp2.checkNWP2(rowB, colB);
 			}
 		}
 	}
@@ -133,6 +125,7 @@ public class Game {
 		public void checkN_P1(int rw, int cl) {
 			int row = rw;
 			int col = cl;
+			// TODO perhaps, if beneficial
 			// to avoid making the same calls 4 times * 8 functions
 			// perhaps make them parameters to the function and call them
 			// outside just once
@@ -141,15 +134,20 @@ public class Game {
 			// String P1Color = p1color;
 			// String P2Color = p2color;
 			// int P1LastRowPlayed = p1lastrowplayed;
+			
+			// Step North until end of board or 
+			// until no more slots of opposite colour are found
 			do {
 				row--;
 				row = Math.max(0, row);
 			} while ((grid[row][col].state == Player2.getColor() && (row > 0)));
-
+			// Now go south and flip all slots BETWEEN the position found above
+			// to the slot position of the last move
 			if ((grid[row][col].state == Player1.getColor()) && ((Player1.getLastRowPlayed() != 0))) {
 				while (row < Player1.getLastRowPlayed() - 1) {
 					row++;
 					row = Math.min(3, row);
+					// TODO
 					// setup a global debug variable and the debug tools can
 					// stay in the code
 					// when debug is needed set it to true where it is defined
@@ -165,9 +163,6 @@ public class Game {
 		public void checkNEP1(int rw, int cl) {
 			int row = rw;
 			int col = cl;
-			// here is an idea to skip exec
-			// if ((row>1)&&(col<2)){ //border check for northeast only. Skipps
-			// case when on border
 			do {
 				col++;
 				col = Math.min(3, col);
