@@ -1,6 +1,10 @@
 package Othello;
-
-
+// *****************************
+// Nicklas Persson
+// Nicolas Swiech
+// 2016-09-28
+//
+// *****************************
 
 public class Minimax {
 	private final int MAX_DEPTH = 16; //search cut-off
@@ -18,25 +22,29 @@ public class Minimax {
 	private Slot[][] board = new Slot[4][4];
 
 	
+	private Node n1 = new Node(6534,1,2,"jox");
+	int h1 = n1.hashCode(); // interesting.....
 	
 }
 class Node{
-	private Node parentNode;//nodeID instead perhaps? 
-	private Node leftChildNode; //nodeID instead perhaps?
-	private Node rightChildNode; //nodeID instead perhaps?
-	private String nodeID; //hash hmmmm howto do?
+	private String parentNodeID; 
+	
+	//private String[] childrenIDs; // is knowing you parent enough. 
+	//does parent need to store child names?
+	
+	private String nodeID; 
 	private int value = Integer.MIN_VALUE;
 	private int alfa = Integer.MIN_VALUE;
 	private int beta = Integer.MAX_VALUE;
 	
 	//Constructor
-	public Node(int v,int a,int b, Node parNode){
+	public Node(int v,int a,int b, String parNodeID){
 		this.value = v;
 		this.alfa = a;
 		this.beta = b;
-		this.parentNode = parNode;
+		this.parentNodeID = parNodeID;
 	}
-	
+
 	public String toString(){
 		return "ID:" + nodeID + "Value:" + value + " alfa:" + alfa + ", beta:" + beta;
 	}
