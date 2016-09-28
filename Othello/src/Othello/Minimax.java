@@ -22,16 +22,12 @@ public class Minimax {
 	private Slot[][] board = new Slot[4][4];
 
 	
-	private Node n1 = new Node(6534,1,2,4,4,666);
+	private Node n1 = new Node(6534,1,2,4,4,666,665);
 	int h1 = n1.hashCode(); // interesting.....
 	
 }
 class Node{
-	private int parentNodeID; 
-	
-	//private String[] childrenIDs; // is knowing you parent enough. 
-	//does parent need to store child names?
-	
+	private int parentNodeID = 0;; 	
 	private int nodeID = -1; 
 	private int row = -1;
 	private int col = -1;
@@ -40,16 +36,19 @@ class Node{
 	private int beta = Integer.MAX_VALUE;
 	
 	//Constructor
-	public Node(int v,int a,int b,int row, int col, int parNodeID){
+	public Node(int v,int a,int b,int row, int col, int ID, int parNodeID){
 		this.value = v;
 		this.alfa = a;
 		this.beta = b;
 		this.row = row;
 		this.col = col;
+		this.nodeID = ID; 
 		this.parentNodeID = parNodeID;
+		
 	}
 
 	public String toString(){
-		return "ID:" + nodeID + "Value:" + value + ", row:"+ row + ", col:" + col + ", alfa:" + alfa + ", beta:" + beta;
+		return "parentID:" + parentNodeID + ", ID:" + nodeID + "Value:" + value + ", row:"+ row + 
+				", col:" + col + ", alfa:" + alfa + ", beta:" + beta;
 	}
 }
