@@ -27,18 +27,22 @@ public class Minimax {
 	
 }
 class Node{
-	private String parentNodeID; 
+	private int parentNodeID; 
 	
 	//private String[] childrenIDs; // is knowing you parent enough. 
 	//does parent need to store child names?
 	
-	private String nodeID; 
+	private int nodeID; 
+	private int row=-1;
+	private int col=-1;
 	private int value = Integer.MIN_VALUE;
 	private int alfa = Integer.MIN_VALUE;
 	private int beta = Integer.MAX_VALUE;
 	
 	//Constructor
-	public Node(int v,int a,int b, String parNodeID){
+	public Node(int v,int a,int b,int row,int col, int parNodeID){
+		this.row = row;
+		this.col = col;
 		this.value = v;
 		this.alfa = a;
 		this.beta = b;
