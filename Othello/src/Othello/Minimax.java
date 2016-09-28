@@ -20,14 +20,12 @@ public class Minimax {
 	//A computer draw shall not take longer than 5 seconds
 
 	private Slot[][] board = new Slot[4][4];
-
-	
 	private Node n1 = new Node(6534,1,2,4,4,666,665);
 	int h1 = n1.hashCode(); // interesting.....
-	
 }
+
 class Node{
-	private int parentNodeID = 0;; 	
+	private int parentNodeID = -666;; 	
 	private int nodeID = -1; 
 	private int row = -1;
 	private int col = -1;
@@ -43,8 +41,7 @@ class Node{
 		this.row = row;
 		this.col = col;
 		this.nodeID = ID; 
-		this.parentNodeID = parNodeID;
-		
+		this.parentNodeID = parNodeID;	
 	}
 
 	public String toString(){
