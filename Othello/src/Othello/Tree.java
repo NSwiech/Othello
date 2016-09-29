@@ -13,4 +13,5 @@ public class Tree {
 	private Node alternativerRoot = new Node(200,300,400,500);
 	
 	
+	
 }

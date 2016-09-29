@@ -1,4 +1,7 @@
 package Othello;
+
+import java.util.*;
+
 // *****************************
 // Nicklas Persson
 // Nicolas Swiech
@@ -24,6 +27,15 @@ public class Minimax {
 	// a minimizing node and maximizing nodes has different
 	// alfa and beta values when new ? true or false?
 	private Node defaultNodeTEST = new Node(10,20,30,40);
+	
+	private ArrayList<Integer> availMoves = new ArrayList<Integer>();
+	private Node[] bacon = new Node[];
+	bacon[0] = rootTEST;
+	availMoves.add(45);
+	
+	private Action AlfaBetaSearch(Node[] availMoves){
+	
+	}
 	
 }
 
