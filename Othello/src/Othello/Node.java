@@ -15,8 +15,9 @@ public class Node {
 		private int value = Integer.MIN_VALUE;
 		private int alfa = Integer.MIN_VALUE;
 		private int beta = Integer.MAX_VALUE;
+		private int nodeIDCounter=0;
 		
-		//Constructor
+		//Constructors
 		public Node(int v,int a,int b,int row, int col, int ID, int parNodeID){
 			this.value = v;
 			this.alfa = a;
@@ -24,6 +25,16 @@ public class Node {
 			this.row = row;
 			this.col = col;
 			this.nodeID = ID; 
+			this.parentNodeID = parNodeID;	
+		}
+		// Nicklas Experiment...
+		// Constructor with some default values
+		public Node(int v,int row, int col, int parNodeID){
+			this.value = v;
+			this.row = row;
+			this.col = col;
+			nodeIDCounter++; //count up when this constructor is used
+			this.nodeID = nodeIDCounter; 
 			this.parentNodeID = parNodeID;	
 		}
 
