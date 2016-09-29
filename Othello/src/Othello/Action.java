@@ -16,7 +16,7 @@ public class Action {
 		this.x = col;
 		this.y = row;
 		this.val = value;
-	}*/
+	}
 
 /*	public int getValue() {
 		return this.val;
