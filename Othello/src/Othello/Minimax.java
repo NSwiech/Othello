@@ -28,22 +28,18 @@ public class Minimax {
 	// alfa and beta values when new ? true or false?
 	private Node defaultNodeTEST = new Node(10,20,30,40);
 	
-	//private ArrayList<Integer> availMoves = new ArrayList<Integer>();
-	public void dumymethod(){
-		Node[] themNodes;
-		Node aNode = new Node();
-		themNodes = new Node[3];
-		themNodes[0] = rootTEST;
-		themNodes[1] = rootTEST;
-		themNodes[2] = rootTEST;
-		AlfaBetaSearch(themNodes);
-		
+	// 
+	public void dummymentod(){
+		Node bacon = new Node(123,123,45,3);
+		ArrayList<Node> availMoves = new ArrayList<Node>();
+		availMoves.add(bacon);
+		alfaBetaSearch(availMoves);
 	}
 	
-	public void AlfaBetaSearch(Node[] availMoves){
-		Node[] sock = new Node[0];
-		System.arraycopy(availMoves,0,sock,0,2);
+	private Node alfaBetaSearch(ArrayList<Node> availMoves){
+		Node a1 = new Node();
+		return a1;
 	}
+	
 }
-
 
