@@ -5,8 +5,6 @@ import java.util.Scanner;
 public class Computer implements Controllable {
 
 	private String color;
-	private Scanner rowChoice = new Scanner(System.in);
-	private Scanner colChoice = new Scanner(System.in);
 	private int row, col;
 	
 	public Computer(String color) {
@@ -15,16 +13,42 @@ public class Computer implements Controllable {
 
 	public void play() {
 		boolean played = false;
+		
 		while (!played) {
 			
-			System.out.println("Choose a row between 1 and 4");
-			row = this.rowChoice.nextInt() - 1;
-			System.out.println("Choose a column between 1 and 4");
-			col = this.colChoice.nextInt() - 1;
+			boolean validRowInput = false;
+			while (!validRowInput) {
+				System.out.println("Choose a row between 1 and 4");
+				Scanner rowChoice = new Scanner(System.in);
+				try {
+					row = Integer.parseInt(rowChoice.next()) - 1;
 
-			if (Game.grid[row][col].state == "available") {
+				} catch (NumberFormatException e) {
+					System.out.println("Wrong input!\n");
+				}
+				if ((row >= 0) && (row < 4)) {
+					validRowInput = true;
+				}
+			}
+
+			boolean validColInput = false;
+			while (!validColInput) {
+				System.out.println("Choose a column between 1 and 4");
+				Scanner colChoice = new Scanner(System.in);
+				try {
+					col = Integer.parseInt(colChoice.next()) - 1;
+
+				} catch (NumberFormatException e) {
+					System.out.println("Wrong input!\n");
+				}
+				if ((col >= 0) && (col < 4)) {
+					validColInput = true;
+				}
+			}
+
+			if (Game.getStateSlot(row, col) == "available") {
 				System.out.println("Legal move. You played.");
-				Game.grid[row][col].state = "Black";
+				Game.setStateSlot(row, col, "Black");
 				played = true;
 			} else {
 				System.out.println("Not legal move.");
@@ -33,14 +57,9 @@ public class Computer implements Controllable {
 		return;
 	}
 
-	/*
-	 * public Slot getLastPlay() { return Game.grid[rowChoice.nextInt() -
-	 * 1][colChoice.nextInt() - 1]; }
-	 */
-
 	public int getLastRowPlayed() {
 		return this.row;
-		
+
 	}
 
 	public int getLastColPlayed() {
