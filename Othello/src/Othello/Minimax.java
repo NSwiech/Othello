@@ -28,7 +28,7 @@ public class Minimax {
 	// alfa and beta values when new ? true or false?
 	private Node defaultNodeTEST = new Node(10,20,30,40);
 	
-	// 
+	// xxx
 	public void dummymentod(){
 		Node bacon = new Node(123,123,45,3);
 		ArrayList<Node> availMoves = new ArrayList<Node>();
