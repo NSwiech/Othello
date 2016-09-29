@@ -21,12 +21,30 @@ public class Minimax {
 	//  How many nodes were examined
 	//
 	//A computer draw shall not take longer than 5 seconds
-
-	private Slot[][] board = new Slot[4][4];
-	private Node rootTEST = new Node(1,2,3,4,5,6,7);
+	
 	// a minimizing node and maximizing nodes has different
 	// alfa and beta values when new ? true or false?
 	private Node defaultNodeTEST = new Node(10,20,30,40);
+	private Node[] availMoves;
+	
+	//Constructor
+	public Minimax(){
+		availMoves = initAvailMoves();
+	}
+	
+	// Set each Node to value 0 heap of leafs
+	// returns an array of Nodes
+	public Node[] initAvailMoves() {
+		Node[] aMoves = null;
+		int n=0;
+		for (int row = 0; row < 4; row++) {
+			for (int col = 0; col < 4; col++) {
+				//Node(int v,int a,int b,int row, int col, int ID, int parNodeID){
+				availMoves[n++] = new Node(0, row, col, -1);
+			}
+		}
+		return aMoves;
+	}
 	
 	// xxx
 	public void dummymentod(){
@@ -35,10 +53,20 @@ public class Minimax {
 		availMoves.add(bacon);
 		alfaBetaSearch(availMoves);
 	}
-	
-	private Node alfaBetaSearch(ArrayList<Node> availMoves){
-		Node a1 = new Node();
-		return a1;
+	// Returns a Node that contains the row and column that is the best move
+	private Node alfaBetaSearch(Node[] moves){
+		Node[] allMoves;
+		allMoves = moves;
+		Node[] resultNodes;
+		
+		for(Node j:allMoves){
+			if(j.getValue()>  TO BE CONMTINUED    ){
+			}
+		}
+		return resultNodes;
+	}
+	private int maxValue(){
+		return 777;
 	}
 	
 }
