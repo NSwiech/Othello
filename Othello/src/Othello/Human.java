@@ -56,9 +56,9 @@ public class Human implements Controllable {
 				}
 			}
 
-			if (Game.grid[row][col].state == "available") {
+			if (Game.grid[row][col].getState().equals("available")) {
 				System.out.println("Legal move. You played.");
-				Game.grid[row][col].state = "White";
+				Game.grid[row][col].setState("White");
 				played = true;
 			} else {
 				System.out.println("Not legal move.");

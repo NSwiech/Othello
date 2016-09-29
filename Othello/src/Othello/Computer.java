@@ -22,9 +22,9 @@ public class Computer implements Controllable {
 			System.out.println("Choose a column between 1 and 4");
 			col = this.colChoice.nextInt() - 1;
 
-			if (Game.grid[row][col].state == "available") {
+			if (Game.grid[row][col].getState() == "available") {
 				System.out.println("Legal move. You played.");
-				Game.grid[row][col].state = "Black";
+				Game.grid[row][col].setState("Black");
 				played = true;
 			} else {
 				System.out.println("Not legal move.");
