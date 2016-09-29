@@ -21,6 +21,8 @@ public class Minimax {
 
 	private Slot[][] board = new Slot[4][4];
 	private Node rootTEST = new Node(1,2,3,4,5,6,7);
+	// a minimizing node and maximizing nodes has different
+	// alfa and beta values when new ? true or false?
 	private Node defaultNodeTEST = new Node(10,20,30,40);
 	
 }
