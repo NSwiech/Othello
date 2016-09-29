@@ -1,15 +1,14 @@
 package Othello;
 
 public class Slot {
-	int row;
-	int col;
-	String state;
+	private int row;
+	private int col;
+	private String state;
 
 	// boolean available; // clarify and agree on meaning of this
 	// if(this.white || this.black){
 	// this available=false;
-	
-	
+	// displayData branch
 	// }
 	
 
@@ -30,17 +29,25 @@ public class Slot {
 			this.state = "Black";
 		else if (this.state == "Black")
 			this.state = "White";
-		else
-			System.out.println("Error in slot flip function. Row " + this.row + "  Col " + this.col + "  State "+this.state);
-		;
+		else {
+			System.out.println("Error in slot flip function.");
+		}
 	};
 	
-	public int getRow(Slot slot) {
-		return slot.row;
+	public int getRow() {
+		return this.row;
 	}
 	
-	public int getCol(Slot slot) {
-		return slot.col;
+	public int getCol() {
+		return this.col;
+	}
+	
+	public String getState() {
+		return this.state;
+	}
+	
+	public void setState(String state) {
+		this.state = state;
 	}
 
 };
