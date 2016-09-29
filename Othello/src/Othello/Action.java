@@ -11,7 +11,7 @@ public class Action {
 	private int y;
 	private int val;
 	
-	private Action(int row, int col, int value){
+	public Action(int row, int col, int value){
 		this.x = col;
 		this.y = row;
 		this.val = value;
