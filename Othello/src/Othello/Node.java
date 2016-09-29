@@ -1,6 +1,6 @@
 package Othello;
 
-public class Node2 {
+public class Node {
 
 		private int parentNodeID = -666;; 	
 		private int nodeID = -1; 
@@ -11,7 +11,7 @@ public class Node2 {
 		private int beta = Integer.MAX_VALUE;
 		
 		//Constructor
-		public Node2(int v,int a,int b,int row, int col, int ID, int parNodeID){
+		public Node(int v,int a,int b,int row, int col, int ID, int parNodeID){
 			this.value = v;
 			this.alfa = a;
 			this.beta = b;
