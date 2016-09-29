@@ -1,4 +1,10 @@
 package Othello;
+//*****************************
+//Nicklas Persson
+//Nicolas Swiech
+//2016-09-28
+//
+//*****************************
 
 public class Action {
 	private int x;
