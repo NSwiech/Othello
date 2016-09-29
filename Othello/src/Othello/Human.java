@@ -12,6 +12,7 @@ public class Human implements Controllable {
 
 	private String color;
 	private int row, col;
+	private int score;
 
 	public Human(String color) {
 		this.color = color;
@@ -52,22 +53,15 @@ public class Human implements Controllable {
 				}
 			}
 
-
-			if (Game.getStateSlot(row, col).equals("available")) {
-
 			if (Game.getStateSlot(row, col) == "available") {
-
 				System.out.println("Legal move. You played.");
-
 				Game.setStateSlot(row, col, "White");
-
 				played = true;
 			} else {
 				System.out.println("Not legal move.");
 			}
 		}
-		}
-
+		return;
 	}
 
 	public int getLastRowPlayed() {
