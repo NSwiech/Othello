@@ -1,7 +1,7 @@
 package Othello;
 
 public class Node {
-
+	
 		private int parentNodeID = -666;; 	
 		private int nodeID = -1; 
 		private int row = -1;
@@ -26,4 +26,4 @@ public class Node {
 					", col:" + col + ", alfa:" + alfa + ", beta:" + beta;
 		}
 	}
-
+	
