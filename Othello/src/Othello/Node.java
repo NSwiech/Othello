@@ -37,6 +37,23 @@ public class Node {
 			this.nodeID = nodeIDCounter; 
 			this.parentNodeID = parNodeID;	
 		}
+		public Node(){
+			
+		}
+		
+		public int compare(Node n1){
+			int result = 42;
+			if (this.value > n1.value){
+				result = 1;
+			}
+			if (this.value < n1.value){
+				result = -1;
+			}
+			if (this.value == n1.value){
+				result = 0;
+			}
+			return result;
+		}
 
 		public String toString(){
 			return "parentID:" + parentNodeID + ", ID:" + nodeID + "Value:" + value + ", row:"+ row + 
