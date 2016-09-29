@@ -49,7 +49,7 @@ public class Computer implements Controllable {
 
 			if (Game.getStateSlot(row, col) == "available") {
 				System.out.println("Legal move. You played.");
-				Game.grid[row][col].setState("Black");
+				Game.setStateSlot(row,col,"Black");
 				played = true;
 			} else {
 				System.out.println("Not legal move.");

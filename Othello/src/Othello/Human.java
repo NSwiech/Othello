@@ -47,13 +47,11 @@ public class Human implements Controllable {
 			}
 
 
-			if (Game.grid[row][col].getState().equals("available")) {
+			if (Game.getStateSlot(row, col).equals("available")) {
 
 			if (Game.getStateSlot(row, col) == "available") {
 
 				System.out.println("Legal move. You played.");
-
-				Game.grid[row][col].setState("White");
 
 				Game.setStateSlot(row, col, "White");
 

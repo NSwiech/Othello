@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Game {
 
-	public static Slot[][] grid = new Slot[4][4];
+	private static Slot[][] grid = new Slot[4][4];
 	private int utility[] = new int[2]; // Score keeper White,Black
 	private boolean actions[][] = new boolean[4][4];
 	private static final String White = "White";
