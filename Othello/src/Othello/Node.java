@@ -59,5 +59,40 @@ public class Node {
 			return "parentID:" + parentNodeID + ", ID:" + nodeID + "Value:" + value + ", row:"+ row + 
 					", col:" + col + ", alfa:" + alfa + ", beta:" + beta;
 		}
+		
+		public int getParentNodeID() {
+			return parentNodeID;
+		}
+		public void setParentNodeID(int parentNodeID) {
+			this.parentNodeID = parentNodeID;
+		}
+		public int getValue() {
+			return value;
+		}
+		public void setValue(int value) {
+			this.value = value;
+		}
+		public int getAlfa() {
+			return alfa;
+		}
+		public void setAlfa(int alfa) {
+			this.alfa = alfa;
+		}
+		public int getBeta() {
+			return beta;
+		}
+		public void setBeta(int beta) {
+			this.beta = beta;
+		}
+		public int getNodeID() {
+			return nodeID;
+		}
+		public int getRow() {
+			return row;
+		}
+		public int getCol() {
+			return col;
+		}
+
 	}
 	
