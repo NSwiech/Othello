@@ -16,6 +16,7 @@ public class Game {
 	private Computer Player2 = new Computer(Black);
 	private GameState gState = new GameState(grid);
 	private static int whiteScore, blackScore;
+	private int flipCounter = 0;
 
 	public static void main(String[] args) {
 		Game program = new Game();
@@ -30,6 +31,7 @@ public class Game {
 
 		boolean victory = false;
 		while (!victory) {
+			this.flipCounter = 0;
 			if (currentPlayer % 2 == 0) {
 				System.out.println("\nThe White Player has to play.");
 				Player1.play();
@@ -140,10 +142,10 @@ public class Game {
 			do {
 				row--;
 				row = Math.max(0, row);
-			} while ((grid[row][col].getState(grid[row][col]) == Player2.getColor() && (row > 0)));
+			} while ((grid[row][col].getState() == Player2.getColor() && (row > 0)));
 			// Now go south and flip all slots BETWEEN the position found above
 			// to the slot position of the last move
-			if ((grid[row][col].getState(grid[row][col]) == Player1.getColor())
+			if ((grid[row][col].getState() == Player1.getColor())
 					&& ((Player1.getLastRowPlayed() != 0))) {
 				while (row < Player1.getLastRowPlayed() - 1) {
 					row++;
@@ -156,6 +158,7 @@ public class Game {
 					System.out.println("@1");
 					// }
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -169,9 +172,9 @@ public class Game {
 				col = Math.min(3, col);
 				row--;
 				row = Math.max(0, row);
-			} while ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (row > 0) && (col < 3));
+			} while ((grid[row][col].getState() == Player2.getColor()) && (row > 0) && (col < 3));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (Player1.getLastRowPlayed() != 0)
+			if ((grid[row][col].getState() == Player1.getColor()) && (Player1.getLastRowPlayed() != 0)
 					&& (Player1.getLastColPlayed() != 3)) {
 				while ((row < Player1.getLastRowPlayed() - 1) && col > Player1.getLastColPlayed() + 1) {
 					col--;
@@ -180,6 +183,7 @@ public class Game {
 					row = Math.min(3, row);
 					System.out.println("@2");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -191,14 +195,15 @@ public class Game {
 			do {
 				col++;
 				col = Math.min(3, col);
-			} while ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (col < 3));
+			} while ((grid[row][col].getState() == Player2.getColor()) && (col < 3));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (Player1.getLastColPlayed() != 3)) {
+			if ((grid[row][col].getState() == Player1.getColor()) && (Player1.getLastColPlayed() != 3)) {
 				while (col > Player1.getLastColPlayed() + 1) {
 					col--;
 					col = Math.max(0, col);
 					System.out.println("@3");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -212,9 +217,9 @@ public class Game {
 				col = Math.min(3, col);
 				row++;
 				row = Math.min(3, row);
-			} while ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (row < 3) && (col < 3));
+			} while ((grid[row][col].getState() == Player2.getColor()) && (row < 3) && (col < 3));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (Player1.getLastRowPlayed() != 3)
+			if ((grid[row][col].getState() == Player1.getColor()) && (Player1.getLastRowPlayed() != 3)
 					&& (Player1.getLastColPlayed() != 3)) {
 				while ((row > Player1.getLastRowPlayed() + 1) && col > Player1.getLastColPlayed() + 1) {
 					col--;
@@ -223,6 +228,7 @@ public class Game {
 					row = Math.max(0, row);
 					System.out.println("@4");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -234,14 +240,15 @@ public class Game {
 			do {
 				row++;
 				row = Math.min(3, row);
-			} while ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (row < 3));
+			} while ((grid[row][col].getState() == Player2.getColor()) && (row < 3));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (Player1.getLastRowPlayed() != 3)) {
+			if ((grid[row][col].getState() == Player1.getColor()) && (Player1.getLastRowPlayed() != 3)) {
 				while (row > Player1.getLastRowPlayed() + 1) {
 					row--;
 					row = Math.max(0, row);
 					System.out.println("@5");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -255,9 +262,9 @@ public class Game {
 				col = Math.max(0, col);
 				row++;
 				row = Math.min(3, row);
-			} while ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (row < 3) && (col > 0));
+			} while ((grid[row][col].getState() == Player2.getColor()) && (row < 3) && (col > 0));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (Player1.getLastRowPlayed() != 3)
+			if ((grid[row][col].getState() == Player1.getColor()) && (Player1.getLastRowPlayed() != 3)
 					&& (Player1.getLastColPlayed() != 0)) {
 				while ((row > Player1.getLastRowPlayed() + 1) && col < Player1.getLastColPlayed() - 1) {
 					col++;
@@ -266,6 +273,7 @@ public class Game {
 					row = Math.max(0, row);
 					System.out.println("@6");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -277,17 +285,16 @@ public class Game {
 			do {
 				col--;
 				col = Math.max(0, col);
-			} while ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (col > 0));
+			} while ((grid[row][col].getState() == Player2.getColor()) && (col > 0));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (Player1.getLastColPlayed() != 0)) {
+			if ((grid[row][col].getState() == Player1.getColor()) && (Player1.getLastColPlayed() != 0)) {
 
 				while (col < Player1.getLastColPlayed() - 1) {
 					col++;
 					col = Math.min(3, col);
 					System.out.println("@7");
-					System.out.println(row + "" + col + "" + grid[row][col].getState(grid[row][col]));
 					grid[row][col].flip();
-					System.out.println(row + "" + col + "" + grid[row][col].getState(grid[row][col]));
+					flipCounter++;
 				}
 			}
 		}
@@ -301,9 +308,9 @@ public class Game {
 				col = Math.max(0, col);
 				row--;
 				row = Math.max(0, row);
-			} while ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (row > 0) && (col > 0));
+			} while ((grid[row][col].getState() == Player2.getColor()) && (row > 0) && (col > 0));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (Player1.getLastRowPlayed() != 0)
+			if ((grid[row][col].getState() == Player1.getColor()) && (Player1.getLastRowPlayed() != 0)
 					&& (Player1.getLastColPlayed() != 0)) {
 				while ((row < Player1.getLastRowPlayed() - 1) && col < Player1.getLastColPlayed() - 1) {
 					col++;
@@ -312,6 +319,7 @@ public class Game {
 					row = Math.min(3, row);
 					System.out.println("@8");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -326,15 +334,16 @@ public class Game {
 			do {
 				row--;
 				row = Math.max(0, row);
-			} while ((grid[row][col].getState(grid[row][col]) == Player1.getColor() && (row > 0)));
+			} while ((grid[row][col].getState() == Player1.getColor() && (row > 0)));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player2.getColor())
+			if ((grid[row][col].getState() == Player2.getColor())
 					&& ((Player2.getLastRowPlayed() != 0))) {
 				while (row < Player2.getLastRowPlayed() - 1) {
 					row++;
 					row = Math.min(3, row);
 					System.out.println("@@1");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -348,9 +357,9 @@ public class Game {
 				col = Math.min(3, col);
 				row--;
 				row = Math.max(0, row);
-			} while ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (row > 0) && (col < 3));
+			} while ((grid[row][col].getState() == Player1.getColor()) && (row > 0) && (col < 3));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (Player2.getLastRowPlayed() != 0)
+			if ((grid[row][col].getState() == Player2.getColor()) && (Player2.getLastRowPlayed() != 0)
 					&& (Player2.getLastColPlayed() != 3)) {
 				while ((row < Player2.getLastRowPlayed() - 1) && col > Player2.getLastColPlayed() + 1) {
 					col--;
@@ -359,6 +368,7 @@ public class Game {
 					row = Math.min(3, row);
 					System.out.println("@@2");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -370,14 +380,15 @@ public class Game {
 			do {
 				col++;
 				col = Math.min(3, col);
-			} while ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (col < 3));
+			} while ((grid[row][col].getState() == Player1.getColor()) && (col < 3));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (Player2.getLastColPlayed() != 3)) {
+			if ((grid[row][col].getState() == Player2.getColor()) && (Player2.getLastColPlayed() != 3)) {
 				while (col > Player2.getLastColPlayed() + 1) {
 					col--;
 					col = Math.max(0, col);
 					System.out.println("@@3");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -391,9 +402,9 @@ public class Game {
 				col = Math.min(3, col);
 				row++;
 				row = Math.min(3, row);
-			} while ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (row < 3) && (col < 3));
+			} while ((grid[row][col].getState() == Player1.getColor()) && (row < 3) && (col < 3));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (Player2.getLastRowPlayed() != 3)
+			if ((grid[row][col].getState() == Player2.getColor()) && (Player2.getLastRowPlayed() != 3)
 					&& (Player2.getLastColPlayed() != 0)) {
 				while ((row > Player2.getLastRowPlayed() + 1) && col > Player2.getLastColPlayed() + 1) {
 					col--;
@@ -402,6 +413,7 @@ public class Game {
 					row = Math.max(0, row);
 					System.out.println("@@4");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -413,14 +425,15 @@ public class Game {
 			do {
 				row++;
 				row = Math.min(3, row);
-			} while ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (row < 3));
+			} while ((grid[row][col].getState() == Player1.getColor()) && (row < 3));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (Player2.getLastRowPlayed() != 3)) {
+			if ((grid[row][col].getState() == Player2.getColor()) && (Player2.getLastRowPlayed() != 3)) {
 				while (row > Player2.getLastRowPlayed() + 1) {
 					row--;
 					row = Math.max(0, row);
 					System.out.println("@@5");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -434,9 +447,9 @@ public class Game {
 				col = Math.max(0, col);
 				row++;
 				row = Math.min(3, row);
-			} while ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (row < 3) && (col > 0));
+			} while ((grid[row][col].getState() == Player1.getColor()) && (row < 3) && (col > 0));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (Player2.getLastRowPlayed() != 3)
+			if ((grid[row][col].getState() == Player2.getColor()) && (Player2.getLastRowPlayed() != 3)
 					&& (Player2.getLastColPlayed() != 0)) {
 				while ((row > Player2.getLastRowPlayed() + 1) && col < Player2.getLastColPlayed() - 1) {
 					col++;
@@ -445,6 +458,7 @@ public class Game {
 					row = Math.max(0, row);
 					System.out.println("@@6");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -456,14 +470,15 @@ public class Game {
 			do {
 				col--;
 				col = Math.max(0, col);
-			} while ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (col > 0));
+			} while ((grid[row][col].getState() == Player1.getColor()) && (col > 0));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (Player2.getLastColPlayed() != 0)) {
+			if ((grid[row][col].getState() == Player2.getColor()) && (Player2.getLastColPlayed() != 0)) {
 				while (col < Player2.getLastColPlayed() - 1) {
 					col++;
 					col = Math.min(3, col);
 					System.out.println("@@7");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -477,9 +492,9 @@ public class Game {
 				col = Math.max(0, col);
 				row--;
 				row = Math.max(0, row);
-			} while ((grid[row][col].getState(grid[row][col]) == Player1.getColor()) && (row > 0) && (col > 0));
+			} while ((grid[row][col].getState() == Player1.getColor()) && (row > 0) && (col > 0));
 
-			if ((grid[row][col].getState(grid[row][col]) == Player2.getColor()) && (Player2.getLastRowPlayed() != 0)
+			if ((grid[row][col].getState() == Player2.getColor()) && (Player2.getLastRowPlayed() != 0)
 					&& (Player2.getLastColPlayed() != 0)) {
 				while ((row < Player2.getLastRowPlayed() - 1) && col < Player2.getLastColPlayed() - 1) {
 					col++;
@@ -488,6 +503,7 @@ public class Game {
 					row = Math.min(3, row);
 					System.out.println("@@8");
 					grid[row][col].flip();
+					flipCounter++;
 				}
 			}
 		}
@@ -502,9 +518,9 @@ public class Game {
 		for (int row = 0; row < 4; row++) {
 			String rowString = row + 1 + " |";
 			for (int col = 0; col < 4; col++) {
-				if (grid[row][col].getState(grid[row][col]) == "available") {
+				if (grid[row][col].getState() == "available") {
 					rowString = rowString + " |";
-				} else if (grid[row][col].getState(grid[row][col]).equals(White)) {
+				} else if (grid[row][col].getState().equals(White)) {
 					rowString = rowString + "W|";
 				} else {
 					rowString = rowString + "B|";
@@ -512,6 +528,7 @@ public class Game {
 			}
 			System.out.println(rowString);
 		}
+		System.out.println(this.flipCounter + "disks have been flipped after this play!");
 		System.out.println("Current score is: White:" + Game.whiteScore + " Black:" + Game.blackScore);
 	}
 
@@ -520,7 +537,7 @@ public class Game {
 		Game.whiteScore = 0;	
 		for (int row = 0; row < 4; row++) {
 			for (int col = 0; col < 4; col++) {
-				if (grid[row][col].getState(grid[row][col]).equals(White)) {
+				if (grid[row][col].getState().equals(White)) {
 					Game.whiteScore++;
 				}
 			}
@@ -533,7 +550,7 @@ public class Game {
 		Game.blackScore = 0;	
 		for (int row = 0; row < 4; row++) {
 			for (int col = 0; col < 4; col++) {
-				if (grid[row][col].getState(grid[row][col]).equals(Black)) {
+				if (grid[row][col].getState().equals(Black)) {
 					Game.blackScore++;
 				}
 			}
@@ -551,7 +568,7 @@ public class Game {
 	}
 
 	public static String getStateSlot(int row, int col) {
-		return grid[row][col].getState(grid[row][col]);
+		return grid[row][col].getState();
 	}
 
 	public static void setStateSlot(int row, int col, String state) {
