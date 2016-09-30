@@ -1,4 +1,7 @@
 package Othello;
+
+import java.util.ArrayList;
+
 //*****************************
 //Nicklas Persson
 //Nicolas Swiech
@@ -8,6 +11,8 @@ package Othello;
 
 public class Node {
 	
+		private Node root = null;
+		private ArrayList<Node> children = null;
 		private int parentNodeID = -666;; 	
 		private int nodeID = -1; 
 		private int row = -1;
@@ -37,9 +42,12 @@ public class Node {
 			this.nodeID = nodeIDCounter; 
 			this.parentNodeID = parNodeID;	
 		}
+		
 		public Node(){
-			
+			this.root = null;
+			this.children = new ArrayList();
 		}
+		
 		
 		public int compare(Node n1){
 			int result = 42;
@@ -58,6 +66,20 @@ public class Node {
 		public String toString(){
 			return "parentID:" + parentNodeID + ", ID:" + nodeID + "Value:" + value + ", row:"+ row + 
 					", col:" + col + ", alfa:" + alfa + ", beta:" + beta;
+		}
+		
+		
+		public void add(Node child){
+			if (children.contains(child) == true){
+				children.add(child);
+			}
+			child.root = this;
+		}
+		
+		public void remove(Node child){
+			if (children.contains(child)){
+				children.remove(child);
+			}
 		}
 		
 		public int getParentNodeID() {
@@ -92,6 +114,10 @@ public class Node {
 		}
 		public int getCol() {
 			return col;
+		}
+		
+		public ArrayList<Node> getChildren(){
+			return children;
 		}
 
 	}
