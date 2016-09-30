@@ -48,7 +48,7 @@ public class Slot {
 		return this.col;
 	}
 	
-	public String getState(Slot slot) {
+	public String getState() {
 		return this.state;
 	}
 	
