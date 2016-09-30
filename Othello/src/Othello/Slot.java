@@ -55,5 +55,25 @@ public class Slot {
 	public void setState(String state) {
 		this.state = state;
 	}
+	
+	public boolean hasNextUpRow(int row) {
+		int x = row-1;
+		return x>=0;
+	}
+	
+	public boolean hasNextDownRow(int row) {
+		int x = row+1;
+		return x<=3;
+	}
+	
+	public boolean hasNextLeftCol(int col) {
+		int y = col-1;
+		return y>=0;
+	}
+	
+	public boolean hasNextRightCol(int col) {
+		int y = col+1;
+		return y<=3;
+	}
 
 };
