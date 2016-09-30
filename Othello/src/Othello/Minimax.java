@@ -129,7 +129,6 @@ public class Minimax {
 		return resultNodes;
 	}
 	
-	
 	private int maxValue(int[] Ztat, int alfa, int beta ,int depth, int maxDepth){
 		if(terminalTest(Zstat) || depth >= maxDepth) {
 			return util(Ztat); // returns a value and a 'move'
