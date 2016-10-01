@@ -3,6 +3,8 @@ package Othello;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
+import java.awt.Point;
+import java.util.LinkedList;
 
 // *****************************
 // Nicklas Persson
@@ -22,6 +24,7 @@ import java.util.NoSuchElementException;
 //**************************************************
 
 public class Minimax {
+
 	// Nicolas area
 	//**************************************************
 	public ArrayList<int[]> getActions(Slot[][] gState){
@@ -52,7 +55,7 @@ public class Minimax {
 					}else {
 						throw new NoSuchElementException();
 					}
-				}
+				} 
 			}
 		}
 			return legalMoves;// returning the list of legalMoves
@@ -73,6 +76,9 @@ public class Minimax {
 	//_________________________________________________________
 	
 	// **** Nicklas area *******
+	//https://github.com/Katherine1/Reversi-Java-Clone/blob/master/elm/reversi/Board.java
+	LinkedList<Point> moves = new LinkedList<Point>();// letz use diz
+
 	private final int MAX_DEPTH = 5; //search cut-off
 	private int searchdepth; //  The depth of the search
 	private int noOfNodesXd; //  How many nodes were examined
