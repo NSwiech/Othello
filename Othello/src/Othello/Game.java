@@ -127,16 +127,6 @@ public class Game {
 		public void checkN_P1(int rw, int cl) {
 			int row = rw;
 			int col = cl;
-			// TODO perhaps, if beneficial
-			// to avoid making the same calls 4 times * 8 functions
-			// perhaps make them parameters to the function and call them
-			// outside just once
-			// speeds up execution ??
-			//
-			// String P1Color = p1color;
-			// String P2Color = p2color;
-			// int P1LastRowPlayed = p1lastrowplayed;
-
 			// Step North until end of board or
 			// until no more slots of opposite colour are found
 			do {
@@ -150,13 +140,7 @@ public class Game {
 				while (row < Player1.getLastRowPlayed() - 1) {
 					row++;
 					row = Math.min(3, row);
-					// TODO
-					// setup a global debug variable and the debug tools can
-					// stay in the code
-					// when debug is needed set it to true where it is defined
-					// if (globalBoolDebug){
 					System.out.println("@1");
-					// }
 					grid[row][col].flip();
 					flipCounter++;
 				}
