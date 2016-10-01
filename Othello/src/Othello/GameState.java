@@ -1,6 +1,7 @@
 package Othello;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 //*****************************
 //Nicklas Persson
@@ -15,14 +16,14 @@ public class GameState {
 	// From this grid create a set of available moves for the heavy algorithm.
 	//
 	private Slot[][] gState;
-	private ArrayList<Action> availMoves;
+	private ArrayList<Slot> availMoves;
 
 	
 	// Trying to implement the Minimax
 	
-	public Action[] minimaxAI(int depth, int currentPlayer) {
+	public Slot[] minimaxAI(int depth, int currentPlayer) {
 		//Let's get all the available moves from the GameState object
-		ArrayList<Action> moves = this.getAvailMoves();
+		ArrayList<Slot> moves = availMoves;
 		int bestScore;
 		//Minimax : the computer wants the best score for him
 		if (currentPlayer % 2 == 1) {
@@ -33,11 +34,11 @@ public class GameState {
 		}
 		int currentScore;//will be useful to compare with bestScore
 		
-		if (this.getAvailMoves().isEmpty()){//end of the game
+		if (availMoves.isEmpty()){//end of the game
 			bestScore = Game.getBlackScore();//calculates the score of the black player (end of the tree)
 		}
 		else {
-			for (Action move : moves){
+			for (Slot move : moves){
 				
 			}
 		}
@@ -46,11 +47,11 @@ public class GameState {
 	}
 	
 		//Getting all the available moves one by one to fill the list
-	public ArrayList<Action> findAvailMoves(Slot[][] gState) {
+	public ArrayList<Slot> findAvailMoves(Slot[][] gState) {
 		for (int row = 0 ; row < 3 ; row++) {
 			for (int col = 0 ; col < 3 ; col++) {
-				if (gState[row][col].getState(gState[row][col]) == "available"){//if a slot is free
-					Action tempAction = new Action(row,col); //then create this available move
+				if (gState[row][col].getState() == "available"){//if a slot is free
+					availMoves tempAction = new Action(row,col); //then create this available move
 					availMoves.add(tempAction);//and add this move to the list of available moves
 				}
 			}
@@ -67,15 +68,15 @@ public class GameState {
 		this.gState = gState;
 	}
 
-	public ArrayList<Action> getAvailMoves() {
+	public ArrayList<Slot> getAvailMoves() {
 		return this.availMoves;
 	}
 
 	// Constructor
 	public GameState(Slot[][] status) {
-		gState = status;
+		this.gState = status;
 	};
-
+	
 	private static class Dir {
 		private int row;
 		private int col;
