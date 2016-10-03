@@ -3,6 +3,9 @@ package Othello;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
+
+import Othello.GameState.Dir;
+
 import java.awt.Point;
 import java.util.LinkedList;
 
@@ -78,7 +81,6 @@ public class Minimax {
 	// **** Nicklas area *******
 	//https://github.com/Katherine1/Reversi-Java-Clone/blob/master/elm/reversi/Board.java
 	LinkedList<Point> moves = new LinkedList<Point>();// letz use diz
-
 	private final int MAX_DEPTH = 5; //search cut-off
 	private int searchdepth; //  The depth of the search
 	private int noOfNodesXd; //  How many nodes were examined
@@ -97,7 +99,6 @@ public class Minimax {
 	
 	//Constructor
 	public Minimax(){
-		availMoves = initAvailMoves();
 	}
 	
 	// Set each Node to value 0 heap of leafs
@@ -122,17 +123,30 @@ public class Minimax {
 		alfaBetaSearch(availMoves);
 	}
 	
+	public Node asd(){
+		
+	}
+	// https://www.youtube.com/watch?v=J1GoI5WHBto&list=PL5REOeYsXtCpjceGElXc2fQ57xJBp3Mny&index=8
 	// Returns a Node that contains the row and column that is the best move
-	private Node alfaBetaSearch(Node[] moves){
-		Node[] allMoves;
+	public Node alfaBetaSearch(Node node, int depth, int a, int b, int player ){
+		
+		int bestMaxVal = a;
+		int bestMinVal = b;
+		Node asdf;
+		
+		Node[] allMoves = new Node[16];
 		allMoves = moves;
 		Node[] resultNodes;//result to be returned
+		//base case
+		if(depth >= MAX_DEPTH){
+			return node.getValue());
+		}
 		
-		for(Node j:allMoves){
+		for(Node j : allMoves){
 			if(j.getValue()>  TO BE CONTINUED    ){
 			}
 		}
-		return resultNodes;
+		return asdf;
 	}
 	
 	private int maxValue(int[] Ztat, int alfa, int beta ,int depth, int maxDepth){
@@ -152,5 +166,29 @@ public class Minimax {
 	private int minValue(){
 		return 777;
 	}
+	
+	//----------------------------
+	private static class Dir2 {
+		private int row;
+		private int col;
+
+		private Dir2(int y, int x) {
+			this.row = y;
+			this.col = x;
+		}
+	};
+
+	// Array of all directions
+	// {{-1,0}{-1,1}{0,1}{1,1}{1,0}{1,-1}{0,-1}{-1,-1}}
+	// N, NE, E, SE, S, SW, W, NW
+	Dir2 N = new Dir2(-1, 0);
+	Dir2 NE = new Dir2(-1, 1);
+	Dir2 E = new Dir2(0, 1);
+	Dir2 SE = new Dir2(1, 1);
+	Dir2 S = new Dir2(1, 0);
+	Dir2 SW = new Dir2(1, -1);
+	Dir2 W = new Dir2(0, -1);
+	Dir2 NW = new Dir2(-1, -1);
+	Dir2[] dirs = { N, NE, E, SE, S, SW, W, NW };
 }
 
