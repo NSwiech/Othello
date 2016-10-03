@@ -133,6 +133,7 @@ public class Minimax {
 		int bestMaxVal = a;
 		int bestMinVal = b;
 		Node asdf;
+		LinkedList<Slot2> legalMovesList = new LinkedList<Slot2>();
 		
 		Node[] allMoves = new Node[16];
 		allMoves = moves;
@@ -142,10 +143,14 @@ public class Minimax {
 			return node.getValue());
 		}
 		
-		for(Node j : allMoves){
-			if(j.getValue()>  TO BE CONTINUED    ){
-			}
+		if (player %2 == 0){ //White = maximum player
+			maxValue();
+		}else{
+			minValue();
 		}
+
+		
+		
 		return asdf;
 	}
 	
@@ -155,9 +160,17 @@ public class Minimax {
 		}else{
 			legalMovesList = generateLegalMoves(sZtat);
 			if (legalMovesList.lenght == 0){
+				its a leaf
 				
-			}
+			}else{
 			
+			for(Node j : allMoves){
+				if(j.getValue()>  TO BE CONTINUED    ){
+					a = min(a, alfabeta( child, depth-1, a, b, false))
+				if (a >= b);
+					break;//prune
+				}
+			}
 		}
 		
 		return 777;
