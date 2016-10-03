@@ -1,4 +1,9 @@
 package Othello;
+
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 //*****************************
 //Nicklas Persson
 //Nicolas Swiech
@@ -9,7 +14,6 @@ package Othello;
 public class Game {
 
 	private static Slot[][] grid = new Slot[4][4];
-	private boolean actions[][] = new boolean[4][4];
 	private static final String White = "White";
 	private static final String Black = "Black";
 	private Human Player1 = new Human(White);
@@ -40,6 +44,7 @@ public class Game {
 				Player2.play();
 			}
 			updateGrid(currentPlayer); //Flipps discs and calculate number of flipped discs
+			
 			gState.setgState(grid); //Copy current gamegrid to gState
 			displayGrid(); //Show grid in console
 
@@ -65,12 +70,24 @@ public class Game {
 		colW = Player1.getLastColPlayed();
 		rowB = Player2.getLastRowPlayed();
 		colB = Player2.getLastColPlayed();
-		checksP1 chkp1 = new checksP1();
-		checksP2 chkp2 = new checksP2();
+		
+		String playingColor,oponentColor;
+		
+		if(currentPlayer % 2 == 0){
+			playingColor = "White";
+			oponentColor = "Black";
+		}else{
+			playingColor = "Black";
+			oponentColor = "White";
+		}
+		
+		checksP1 chkp1 = new checksP1(grid);
+		checksP2 chkp2 = new checksP2(grid);
+		
 		if (currentPlayer % 2 == 0) {  // white(human) plays even moves
 
 			if (rowW > 1) {
-				chkp1.checkN_P1(rowW, colW);
+				chkp1.checkN_P1(rowW, colW, playingColor, oponentColor);
 			}
 			if ((rowW > 1) && (colW < 2)) {
 				chkp1.checkNEP1(rowW, colW);
@@ -125,25 +142,35 @@ public class Game {
 	}
 
 	public class checksP1 {
+		
+		private Slot[][] localgrid;
+		//Constructor
+		public checksP1(Slot[][] slotArray){
+			// Does this realy make a Deep copy of all values in the slots ?
+			localgrid = Arrays.copyOf(slotArray, slotArray.length);
+		}
+		
+		// To Do: make checks Return result to outside
+		// deep copy needed in constructor IF we are doing this and the same to 'return' the grid
+		// array of objects not cloneable?
+				
 		// check N (North for Player1)
-		public void checkN_P1(int rw, int cl) {
-			int row = rw;
-			int col = cl;
+		public void checkN_P1(int _row, int _col, String _player, String _oponent) {
+			int row = _row, col = _col;
+			String player =_player, oponent = _oponent; 
+			
 			// Step North until end of board or
 			// until no more slots of opposite colour are found
 			do {
-				row--;
-				row = Math.max(0, row);
-			} while (grid[row][col].getState().equals(Player2.getColor()) && (row > 0));
+				row = Math.max(0, row--);
+			} while (localgrid[row][col].getState().equals(oponent) && (row > 0));
 			// Now go south and flip all slots BETWEEN the position found above
 			// back to the slot position of the last move
-			if (grid[row][col].getState().equals(Player1.getColor())
-					&& ((Player1.getLastRowPlayed() != 0))) {
-				while (row < Player1.getLastRowPlayed() - 1) {
-					row++;
-					row = Math.min(3, row);
+			if (localgrid[row][col].getState().equals(player) && ((_row != 0))) {
+				while (row < _row - 1) {
+					row = Math.min(3, row++);
 					System.out.println("@1");
-					grid[row][col].flip();
+					localgrid[row][col].flip();
 					flipCounter++;
 				}
 			}
@@ -151,8 +178,7 @@ public class Game {
 
 		// check NE (North East)
 		public void checkNEP1(int rw, int cl) {
-			int row = rw;
-			int col = cl;
+			int row = rw, col = cl;
 			do {
 				col++;
 				col = Math.min(3, col);
@@ -313,6 +339,13 @@ public class Game {
 	}
 
 	class checksP2 {
+		
+		private Slot[][] grid;
+		//Constructor
+		public checksP2(Slot[][] slotArray){
+			grid = slotArray;
+		}
+		
 		// check N
 		public void checkN_P2(int rw, int cl) {
 			int row = rw;
@@ -320,7 +353,7 @@ public class Game {
 			do {
 				row--;
 				row = Math.max(0, row);
-			} while (grid[row][col].getState().equals(Player1.getColor()) && (row > 0));
+			} while (this.grid[row][col].getState().equals(Player1.getColor()) && (row > 0));
 
 			if (grid[row][col].getState() .equals(Player2.getColor())
 					&& ((Player2.getLastRowPlayed() != 0))) {
@@ -576,5 +609,31 @@ public class Game {
 	public void setBlackScore(int blackScore) {
 		Game.blackScore = blackScore;
 	}
-
+	
+	
+	// Conversion to better version slot Slot2. 
+	// This is admittedly clumsy but caused by early design mistake.
+	public ArrayList<Slot2> getGameState(){
+		ArrayList<Slot2> gameState = new ArrayList<Slot2>();
+		int status = 0;
+		for (int row = 0; row < 4; row++) {
+			for (int col = 0; col < 4; col++) {
+				// NB! Col = x and Row = y Point's constructor is Point(x,y) NOT like in grid[row][col];
+				Point point = new Point(col,row);
+				//Convert from string to integer status representation
+				if(grid[row][col].getState().equals("White"))
+					status = 1;
+				
+				if(grid[row][col].getState().equals("Black"))
+					status = -1;
+				
+				if(grid[row][col].getState().equals("available"))
+					status = 0;
+				
+				gameState.add(new Slot2(point, status));
+			}
+		}
+		return gameState;
+	}
+	
 }
