@@ -17,7 +17,6 @@ public class Slot {
 	// displayData branch
 	// }
 	
-
 	// not totally sure position belongs slot
 	// perhaps its enough to do like call grid[1][4].slot.flipp()
 	// and grid[1][3].slot.available=false;
