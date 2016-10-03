@@ -82,7 +82,7 @@ public class Game {
 		}
 		
 		checksP1 chkp1 = new checksP1(grid);
-		checksP2 chkp2 = new checksP2(grid);
+		checksP2 chkp2 = new checksP2(grid); //future delete
 		
 		if (currentPlayer % 2 == 0) {  // white(human) plays even moves
 
@@ -110,7 +110,7 @@ public class Game {
 			if ((rowW > 1) && (colW > 1)) {
 				chkp1.checkNWP1(rowW, colW);
 			}
-		} else {
+		} else { 
 
 			if (rowB > 1) {
 				chkp2.checkN_P2(rowB, colB);
