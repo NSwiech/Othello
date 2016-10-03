@@ -7,8 +7,6 @@ package Othello;
 //
 //*****************************
 
-import java.util.Scanner;
-
 public class Computer implements Controllable {
 
 	private String color;
@@ -20,13 +18,10 @@ public class Computer implements Controllable {
 
 	public void play() {
 		
-		
 	}
-
 
 	public int getLastRowPlayed() {
 		return this.row;
-
 	}
 
 	public int getLastColPlayed() {
