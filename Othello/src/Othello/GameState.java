@@ -16,12 +16,11 @@ public class GameState {
 	// From this grid create a set of available moves for the heavy algorithm.
 	//
 	private Slot[][] gState;
-	private ArrayList<Slot> availMoves;
 
 	
 	// Trying to implement the Minimax
 	
-	public Slot[] minimaxAI(int depth, int currentPlayer) {
+	public ArrayList<Slot> minimaxAI(int depth, int currentPlayer) {
 		//Let's get all the available moves from the GameState object
 		ArrayList<Slot> moves = availMoves;
 		int bestScore;
@@ -43,15 +42,17 @@ public class GameState {
 			}
 		}
 		
-		return;
+		return moves;
 	}
 	
-		//Getting all the available moves one by one to fill the list
+	//Getting all the available moves one by one to fill the list
 	public ArrayList<Slot> findAvailMoves(Slot[][] gState) {
+		ArrayList<Slot> availMoves;
+		
 		for (int row = 0 ; row < 3 ; row++) {
 			for (int col = 0 ; col < 3 ; col++) {
 				if (gState[row][col].getState() == "available"){//if a slot is free
-					availMoves tempAction = new Action(row,col); //then create this available move
+					Slot tempAction = new Slot(row,col); //then create this available move
 					availMoves.add(tempAction);//and add this move to the list of available moves
 				}
 			}
