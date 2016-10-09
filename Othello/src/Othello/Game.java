@@ -45,7 +45,7 @@ public class Game {
 			}
 			updateGrid(currentPlayer); //Flipps discs and calculate number of flipped discs
 			
-			gState.setgState(grid); //Copy current gamegrid to gState
+			//gState.setgState(grid); //Copy current gamegrid to gState
 			displayGrid(); //Show grid in console
 
 			currentPlayer++;
@@ -64,112 +64,89 @@ public class Game {
 
 	// Flips slot status in the grid after a players make a move
 	public void updateGrid(int currentPlayer) {
-		int rowW, colW, rowB, colB;
-		// put last move in local variables for recurring use
-		rowW = Player1.getLastRowPlayed();
-		colW = Player1.getLastColPlayed();
-		rowB = Player2.getLastRowPlayed();
-		colB = Player2.getLastColPlayed();
-		
+		int rw,cl;
 		String playingColor,oponentColor;
 		
 		if(currentPlayer % 2 == 0){
 			playingColor = "White";
 			oponentColor = "Black";
+			rw = Player1.getLastRowPlayed(); // put last move in local variables for recurring use
+			cl = Player1.getLastColPlayed();
 		}else{
 			playingColor = "Black";
 			oponentColor = "White";
+			rw = Player2.getLastRowPlayed();
+			cl = Player2.getLastColPlayed();
 		}
 		
-		checksP1 chkp1 = new checksP1(grid);
-		checksP2 chkp2 = new checksP2(grid); //future delete
+		checksBoard chk = new checksBoard(grid);
 		
-		if (currentPlayer % 2 == 0) {  // white(human) plays even moves
-
-			if (rowW > 1) {
-				chkp1.checkN_P1(rowW, colW, playingColor, oponentColor);
-			}
-			if ((rowW > 1) && (colW < 2)) {
-				chkp1.checkNEP1(rowW, colW);
-			}
-			if ((colW < 2)) {
-				chkp1.checkE_P1(rowW, colW);
-			}
-			if ((rowW < 2) && (colW < 2)) {
-				chkp1.checkSEP1(rowW, colW);
-			}
-			if ((rowW < 2)) {
-				chkp1.checkS_P1(rowW, colW);
-			}
-			if ((rowW < 2) && (colW > 1)) {
-				chkp1.checkSWP1(rowW, colW);
-			}
-			if ((colW > 1)) {
-				chkp1.checkW_P1(rowW, colW);
-			}
-			if ((rowW > 1) && (colW > 1)) {
-				chkp1.checkNWP1(rowW, colW);
-			}
-		} else { 
-
-			if (rowB > 1) {
-				chkp2.checkN_P2(rowB, colB);
-			}
-			if ((rowB > 1) && (colB < 2)) {
-				chkp2.checkNEP2(rowB, colB);
-			}
-			if ((colB < 2)) {
-				chkp2.checkE_P2(rowB, colB);
-			}
-			if ((rowB < 2) && (colB < 2)) {
-				chkp2.checkSEP2(rowB, colB);
-			}
-			if ((rowB < 2)) {
-				chkp2.checkS_P2(rowB, colB);
-			}
-			if ((rowB < 2) && (colB > 1)) {
-				chkp2.checkSWP2(rowB, colB);
-			}
-			if ((colB > 1)) {
-				chkp2.checkW_P2(rowB, colB);
-			}
-			if ((rowB > 1) && (colB > 1)) {
-				chkp2.checkNWP2(rowB, colB);
-			}
+		if (rw > 1) {
+			chk.checkN(rw, cl, playingColor, oponentColor);
 		}
+		if ((rw > 1) && (cl < 2)) {
+			chk.checkNE(rw, cl, playingColor, oponentColor);
+		}
+		if ((cl < 2)) {
+			chk.checkE(rw, cl, playingColor, oponentColor);
+		}
+		if ((rw < 2) && (cl < 2)) {
+			chk.checkSE(rw, cl, playingColor, oponentColor);
+		}
+		if ((rw < 2)) {
+			chk.checkS(rw, cl, playingColor, oponentColor);
+		}
+		if ((rw < 2) && (cl > 1)) {
+			chk.checkSW(rw, cl, playingColor, oponentColor);
+		}
+		if ((cl > 1)) {
+			chk.checkW(rw, cl, playingColor, oponentColor);
+		}
+		if ((rw > 1) && (cl > 1)) {
+			chk.checkNW(rw, cl, playingColor, oponentColor);
+		}
+		
+		//returns result to global variable 'grid'
+		grid = chk.getUpdatedGrid();
+
 		calculateWScore();
 		calculateBScore();
 	}
-
-	public class checksP1 {
-		
+	
+public class checksBoard {
 		private Slot[][] localgrid;
+		
 		//Constructor
-		public checksP1(Slot[][] slotArray){
-			// Does this realy make a Deep copy of all values in the slots ?
+		public checksBoard(Slot[][] slotArray){
 			localgrid = Arrays.copyOf(slotArray, slotArray.length);
 		}
 		
-		// To Do: make checks Return result to outside
-		// deep copy needed in constructor IF we are doing this and the same to 'return' the grid
-		// array of objects not cloneable?
-				
+		public void updateLocalGrid(Slot[][] slotArray){
+			localgrid = Arrays.copyOf(slotArray, slotArray.length);
+		}
+		
+		//Returns result to grid
+		public Slot[][] getUpdatedGrid(){
+			return Arrays.copyOf(localgrid, localgrid.length);
+		}
+
 		// check N (North for Player1)
-		public void checkN_P1(int _row, int _col, String _player, String _oponent) {
+		public void checkN(int _row, int _col, String _player, String _oponent) {
 			int row = _row, col = _col;
 			String player =_player, oponent = _oponent; 
 			
 			// Step North until end of board or
 			// until no more slots of opposite colour are found
 			do {
-				row = Math.max(0, row--);
+				row--;
+				row = Math.max(0, row);
 			} while (localgrid[row][col].getState().equals(oponent) && (row > 0));
 			// Now go south and flip all slots BETWEEN the position found above
 			// back to the slot position of the last move
 			if (localgrid[row][col].getState().equals(player) && ((_row != 0))) {
 				while (row < _row - 1) {
-					row = Math.min(3, row++);
-					System.out.println("@1");
+					row++;
+					row = Math.min(3, row);
 					localgrid[row][col].flip();
 					flipCounter++;
 				}
@@ -177,360 +154,159 @@ public class Game {
 		}
 
 		// check NE (North East)
-		public void checkNEP1(int rw, int cl) {
-			int row = rw, col = cl;
+		public void checkNE(int _row, int _col, String _player, String _oponent) {
+			int row = _row, col = _col;
+			String player =_player, oponent = _oponent; 
 			do {
 				col++;
-				col = Math.min(3, col);
 				row--;
+				col = Math.min(3, col);
 				row = Math.max(0, row);
-			} while (grid[row][col].getState().equals(Player2.getColor()) && (row > 0) && (col < 3));
+			} while (localgrid[row][col].getState().equals(oponent) && (row > 0) && (col < 3));
 
-			if (grid[row][col].getState().equals(Player1.getColor()) && (Player1.getLastRowPlayed() != 0)
-					&& (Player1.getLastColPlayed() != 3)) {
-				while ((row < Player1.getLastRowPlayed() - 1) && col > Player1.getLastColPlayed() + 1) {
+			if (localgrid[row][col].getState().equals(player) && (_row != 0)
+					&& (_col != 3)) {
+				while ((row < _row - 1) && col > _col + 1) {
 					col--;
-					col = Math.max(0, col);
 					row++;
+					col = Math.max(0, col);
 					row = Math.min(3, row);
-					System.out.println("@2");
-					grid[row][col].flip();
+					localgrid[row][col].flip();
 					flipCounter++;
 				}
 			}
 		}
 
 		// check E
-		public void checkE_P1(int rw, int cl) {
-			int row = rw;
-			int col = cl;
+		public void checkE(int _row, int _col, String _player, String _oponent) {
+			int row = _row, col = _col;
+			String player =_player, oponent = _oponent; 
 			do {
 				col++;
 				col = Math.min(3, col);
-			} while (grid[row][col].getState().equals(Player2.getColor()) && (col < 3));
+			} while (localgrid[row][col].getState().equals(oponent) && (col < 3));
 
-			if (grid[row][col].getState().equals( Player1.getColor()) && (Player1.getLastColPlayed() != 3)) {
-				while (col > Player1.getLastColPlayed() + 1) {
+			if (localgrid[row][col].getState().equals(player) && (_col != 3)) {
+				while (col > _col + 1) {
 					col--;
 					col = Math.max(0, col);
-					System.out.println("@3");
-					grid[row][col].flip();
+					localgrid[row][col].flip();
 					flipCounter++;
 				}
 			}
 		}
 
 		// check SE
-		public void checkSEP1(int rw, int cl) {
-			int row = rw;
-			int col = cl;
+		public void checkSE(int _row, int _col, String _player, String _oponent) {
+			int row = _row, col = _col;
+			String player =_player, oponent = _oponent; 
 			do {
 				col++;
-				col = Math.min(3, col);
 				row++;
+				col = Math.min(3, col);
 				row = Math.min(3, row);
-			} while (grid[row][col].getState().equals(Player2.getColor()) && (row < 3) && (col < 3));
+			} while (localgrid[row][col].getState().equals(oponent) && (row < 3) && (col < 3));
 
-			if (grid[row][col].getState().equals(Player1.getColor()) && (Player1.getLastRowPlayed() != 3)
-					&& (Player1.getLastColPlayed() != 3)) {
-				while ((row > Player1.getLastRowPlayed() + 1) && col > Player1.getLastColPlayed() + 1) {
+			if (localgrid[row][col].getState().equals(player) && (_row != 3)
+					&& (_col != 3)) {
+				while ((row > _row + 1) && col > _col + 1) {
 					col--;
-					col = Math.max(0, col);
 					row--;
+					col = Math.max(0, col);
 					row = Math.max(0, row);
-					System.out.println("@4");
-					grid[row][col].flip();
+					localgrid[row][col].flip();
 					flipCounter++;
 				}
 			}
 		}
 
 		// check S
-		public void checkS_P1(int rw, int cl) {
-			int row = rw;
-			int col = cl;
+		public void checkS(int _row, int _col, String _player, String _oponent) {
+			int row = _row, col = _col;
+			String player =_player, oponent = _oponent; 
 			do {
 				row++;
 				row = Math.min(3, row);
-			} while (grid[row][col].getState().equals(Player2.getColor()) && (row < 3));
+			} while (localgrid[row][col].getState().equals(oponent) && (row < 3));
 
-			if (grid[row][col].getState().equals(Player1.getColor()) && (Player1.getLastRowPlayed() != 3)) {
-				while (row > Player1.getLastRowPlayed() + 1) {
+			if (localgrid[row][col].getState().equals(player) && (_row != 3)) {
+				while (row > _row + 1) {
 					row--;
 					row = Math.max(0, row);
-					System.out.println("@5");
-					grid[row][col].flip();
+					localgrid[row][col].flip();
 					flipCounter++;
 				}
 			}
 		}
 
 		// check SW
-		public void checkSWP1(int rw, int cl) {
-			int row = rw;
-			int col = cl;
+		public void checkSW(int _row, int _col, String _player, String _oponent) {
+			int row = _row, col = _col;
+			String player =_player, oponent = _oponent; 
 			do {
 				col--;
-				col = Math.max(0, col);
 				row++;
+				col = Math.max(0, col);
 				row = Math.min(3, row);
-			} while (grid[row][col].getState().equals(Player2.getColor()) && (row < 3) && (col > 0));
+			} while (localgrid[row][col].getState().equals(oponent) && (row < 3) && (col > 0));
 
-			if (grid[row][col].getState().equals(Player1.getColor()) && (Player1.getLastRowPlayed() != 3)
-					&& (Player1.getLastColPlayed() != 0)) {
-				while ((row > Player1.getLastRowPlayed() + 1) && col < Player1.getLastColPlayed() - 1) {
+			if (localgrid[row][col].getState().equals(player) && (_row != 3)
+					&& (_col != 0)) {
+				while ((row > _row + 1) && col < _col - 1) {
 					col++;
-					col = Math.min(3, col);
 					row--;
+					col = Math.min(3, col);
 					row = Math.max(0, row);
-					System.out.println("@6");
-					grid[row][col].flip();
+					localgrid[row][col].flip();
 					flipCounter++;
 				}
 			}
 		}
-
+		
 		// check W
-		public void checkW_P1(int rw, int cl) {
-			int row = rw;
-			int col = cl;
+		public void checkW(int _row, int _col, String _player, String _oponent) {
+			int row = _row, col = _col;
+			String player =_player, oponent = _oponent; 
 			do {
 				col--;
 				col = Math.max(0, col);
-			} while (grid[row][col].getState().equals(Player2.getColor()) && (col > 0));
+			} while (localgrid[row][col].getState().equals(oponent) && (col > 0));
 
-			if (grid[row][col].getState().equals(Player1.getColor()) && (Player1.getLastColPlayed() != 0)) {
-
-				while (col < Player1.getLastColPlayed() - 1) {
+			if (localgrid[row][col].getState().equals(player) && (_col != 0)) {
+				while (col < (_col - 1)) {
 					col++;
 					col = Math.min(3, col);
-					System.out.println("@7");
-					grid[row][col].flip();
+					localgrid[row][col].flip();
 					flipCounter++;
 				}
 			}
 		}
 
 		// check NW
-		public void checkNWP1(int rw, int cl) {
-			int row = rw;
-			int col = cl;
+		public void checkNW(int _row, int _col, String _player, String _oponent) {
+			int row = _row, col = _col;
+			String player =_player, oponent = _oponent; 
 			do {
 				col--;
-				col = Math.max(0, col);
 				row--;
-				row = Math.max(0, row);
-			} while (grid[row][col].getState().equals(Player2.getColor()) && (row > 0) && (col > 0));
-
-			if (grid[row][col].getState().equals(Player1.getColor()) && (Player1.getLastRowPlayed() != 0)
-					&& (Player1.getLastColPlayed() != 0)) {
-				while ((row < Player1.getLastRowPlayed() - 1) && col < Player1.getLastColPlayed() - 1) {
-					col++;
-					col = Math.min(3, col);
-					row++;
-					row = Math.min(3, row);
-					System.out.println("@8");
-					grid[row][col].flip();
-					flipCounter++;
-				}
-			}
-		}
-
-	}
-
-	class checksP2 {
-		
-		private Slot[][] grid;
-		//Constructor
-		public checksP2(Slot[][] slotArray){
-			grid = slotArray;
-		}
-		
-		// check N
-		public void checkN_P2(int rw, int cl) {
-			int row = rw;
-			int col = cl;
-			do {
-				row--;
-				row = Math.max(0, row);
-			} while (this.grid[row][col].getState().equals(Player1.getColor()) && (row > 0));
-
-			if (grid[row][col].getState() .equals(Player2.getColor())
-					&& ((Player2.getLastRowPlayed() != 0))) {
-				while (row < Player2.getLastRowPlayed() - 1) {
-					row++;
-					row = Math.min(3, row);
-					System.out.println("@@1");
-					grid[row][col].flip();
-					flipCounter++;
-				}
-			}
-		}
-
-		// check NE
-		public void checkNEP2(int rw, int cl) {
-			int row = rw;
-			int col = cl;
-			do {
-				col++;
-				col = Math.min(3, col);
-				row--;
-				row = Math.max(0, row);
-			} while (grid[row][col].getState().equals(Player1.getColor()) && (row > 0) && (col < 3));
-
-			if (grid[row][col].getState().equals(Player2.getColor()) && (Player2.getLastRowPlayed() != 0)
-					&& (Player2.getLastColPlayed() != 3)) {
-				while ((row < Player2.getLastRowPlayed() - 1) && col > Player2.getLastColPlayed() + 1) {
-					col--;
-					col = Math.max(0, col);
-					row++;
-					row = Math.min(3, row);
-					System.out.println("@@2");
-					grid[row][col].flip();
-					flipCounter++;
-				}
-			}
-		}
-
-		// check E
-		public void checkE_P2(int rw, int cl) {
-			int row = rw;
-			int col = cl;
-			do {
-				col++;
-				col = Math.min(3, col);
-			} while (grid[row][col].getState().equals(Player1.getColor()) && (col < 3));
-
-			if (grid[row][col].getState().equals(Player2.getColor()) && (Player2.getLastColPlayed() != 3)) {
-				while (col > Player2.getLastColPlayed() + 1) {
-					col--;
-					col = Math.max(0, col);
-					System.out.println("@@3");
-					grid[row][col].flip();
-					flipCounter++;
-				}
-			}
-		}
-
-		// check SE
-		public void checkSEP2(int rw, int cl) {
-			int row = rw;
-			int col = cl;
-			do {
-				col++;
-				col = Math.min(3, col);
-				row++;
-				row = Math.min(3, row);
-			} while (grid[row][col].getState().equals(Player1.getColor()) && (row < 3) && (col < 3));
-
-			if (grid[row][col].getState().equals(Player2.getColor()) && (Player2.getLastRowPlayed() != 3)
-					&& (Player2.getLastColPlayed() != 0)) {
-				while ((row > Player2.getLastRowPlayed() + 1) && col > Player2.getLastColPlayed() + 1) {
-					col--;
-					col = Math.max(0, col);
-					row--;
-					row = Math.max(0, row);
-					System.out.println("@@4");
-					grid[row][col].flip();
-					flipCounter++;
-				}
-			}
-		}
-
-		// check S
-		public void checkS_P2(int rw, int cl) {
-			int row = rw;
-			int col = cl;
-			do {
-				row++;
-				row = Math.min(3, row);
-			} while (grid[row][col].getState().equals(Player1.getColor()) && (row < 3));
-
-			if (grid[row][col].getState().equals(Player2.getColor()) && (Player2.getLastRowPlayed() != 3)) {
-				while (row > Player2.getLastRowPlayed() + 1) {
-					row--;
-					row = Math.max(0, row);
-					System.out.println("@@5");
-					grid[row][col].flip();
-					flipCounter++;
-				}
-			}
-		}
-
-		// check SW
-		public void checkSWP2(int rw, int cl) {
-			int row = rw;
-			int col = cl;
-			do {
-				col--;
 				col = Math.max(0, col);
-				row++;
-				row = Math.min(3, row);
-			} while (grid[row][col].getState().equals(Player1.getColor()) && (row < 3) && (col > 0));
-
-			if (grid[row][col].getState().equals(Player2.getColor()) && (Player2.getLastRowPlayed() != 3)
-					&& (Player2.getLastColPlayed() != 0)) {
-				while ((row > Player2.getLastRowPlayed() + 1) && col < Player2.getLastColPlayed() - 1) {
-					col++;
-					col = Math.min(3, col);
-					row--;
-					row = Math.max(0, row);
-					System.out.println("@@6");
-					grid[row][col].flip();
-					flipCounter++;
-				}
-			}
-		}
-
-		// check W
-		public void checkW_P2(int rw, int cl) {
-			int row = rw;
-			int col = cl;
-			do {
-				col--;
-				col = Math.max(0, col);
-			} while (grid[row][col].getState().equals(Player1.getColor()) && (col > 0));
-
-			if (grid[row][col].getState().equals(Player2.getColor()) && (Player2.getLastColPlayed() != 0)) {
-				while (col < Player2.getLastColPlayed() - 1) {
-					col++;
-					col = Math.min(3, col);
-					System.out.println("@@7");
-					grid[row][col].flip();
-					flipCounter++;
-				}
-			}
-		}
-
-		// check NW
-		public void checkNWP2(int rw, int cl) {
-			int row = rw;
-			int col = cl;
-			do {
-				col--;
-				col = Math.max(0, col);
-				row--;
 				row = Math.max(0, row);
-			} while (grid[row][col].getState().equals(Player1.getColor()) && (row > 0) && (col > 0));
-
-			if (grid[row][col].getState().equals(Player2.getColor()) && (Player2.getLastRowPlayed() != 0)
-					&& (Player2.getLastColPlayed() != 0)) {
-				while ((row < Player2.getLastRowPlayed() - 1) && col < Player2.getLastColPlayed() - 1) {
+			} while (localgrid[row][col].getState().equals(oponent) && (row > 0) && (col > 0));		
+	
+			if (localgrid[row][col].getState().equals(player) && (_row != 0) && (_col != 0)) {
+				while ((row < _row - 1) && (col < (_col - 1))) {
 					col++;
+					row++;			
 					col = Math.min(3, col);
-					row++;
 					row = Math.min(3, row);
-					System.out.println("@@8");
-					grid[row][col].flip();
+					localgrid[row][col].flip();
 					flipCounter++;
 				}
 			}
 		}
-
 	}
 
 	// Display current game status in the console
-
 	public void displayGrid() {
 
 		System.out.println("   1 2 3 4");

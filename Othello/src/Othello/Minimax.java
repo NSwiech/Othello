@@ -148,9 +148,6 @@ public class Minimax {
 		}else{
 			minValue();
 		}
-
-		
-		
 		return asdf;
 	}
 	

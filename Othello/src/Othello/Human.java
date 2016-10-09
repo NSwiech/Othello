@@ -1,12 +1,13 @@
 package Othello;
 //*****************************
+
+import java.util.Scanner;
+
 //Nicklas Persson
 //Nicolas Swiech
 //2016-09-28
 //
 //*****************************
-
-import java.util.Scanner;
 
 public class Human implements Controllable {
 
@@ -66,7 +67,6 @@ public class Human implements Controllable {
 
 	public int getLastRowPlayed() {
 		return this.row;
-
 	}
 
 	public int getLastColPlayed() {
