@@ -29,45 +29,45 @@ public class Game {
 
 	public void startGame() {
 		initializeGrid();// set each Slot of the grid to "available"
-		int currentPlayer = 0;
+		int turnNo = 0;
 		System.out.println("We are off to a great start, Vive la France\n");
 		displayGrid();
 
 		boolean victory = false;
 		while (!victory) {
 			this.flipCounter = 0;
-			if (currentPlayer % 2 == 0) { // white(human) plays on even
+			if (turnNo % 2 == 0) { // white(human) plays on even
 				System.out.println("\nThe White players turn to play.");
 				Player1.play();
 			} else { 
 				System.out.println("\nThe Black players turn to play.");
 				Player2.play();
 			}
-			updateGrid(currentPlayer); //Flipps discs and calculate number of flipped discs
+			grid = updateGrid(turnNo, grid); //Flipps discs and calculate number of flipped discs
 			
 			//gState.setgState(grid); //Copy current gamegrid to gState
 			displayGrid(); //Show grid in console
 
-			currentPlayer++;
+			turnNo++;
 			// Game end detector
-			if (currentPlayer >= 16) {
+			if (turnNo >= 16) {
 				victory = true;
 				if (Game.whiteScore == Game.blackScore) {
 					System.out.println("The game ends in a tie!");
 				} else {
 					System.out.println("The White Player ends with a score of " + Game.whiteScore);
-					System.out.println("The Black Player ends with a score of " + Game.whiteScore);
+					System.out.println("The Black Player ends with a score of " + Game.blackScore);
 				}
 			}
 		}
 	}
 
 	// Flips slot status in the grid after a players make a move
-	public void updateGrid(int currentPlayer) {
+	public Slot[][] updateGrid(int gameturn, Slot[][] gameState) {
 		int rw,cl;
 		String playingColor,oponentColor;
 		
-		if(currentPlayer % 2 == 0){
+		if(gameturn % 2 == 0){
 			playingColor = "White";
 			oponentColor = "Black";
 			rw = Player1.getLastRowPlayed(); // put last move in local variables for recurring use
@@ -79,7 +79,7 @@ public class Game {
 			cl = Player2.getLastColPlayed();
 		}
 		
-		checksBoard chk = new checksBoard(grid);
+		checksBoard chk = new checksBoard(gameState);
 		
 		if (rw > 1) {
 			chk.checkN(rw, cl, playingColor, oponentColor);
@@ -105,12 +105,11 @@ public class Game {
 		if ((rw > 1) && (cl > 1)) {
 			chk.checkNW(rw, cl, playingColor, oponentColor);
 		}
-		
-		//returns result to global variable 'grid'
-		grid = chk.getUpdatedGrid();
 
 		calculateWScore();
 		calculateBScore();
+		
+		return chk.getUpdatedGrid();
 	}
 	
 public class checksBoard {
